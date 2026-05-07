@@ -1,0 +1,112 @@
+[
+  {
+    "Comparison": "Cross-Attn vs MLP (650M ICL-full)",
+    "Model A": "Cross-Attn 650M ICL-full",
+    "Model B": "MLP 650M ICL-full",
+    "n": 5,
+    "t_stat": 0.394,
+    "t_pvalue": 0.7137,
+    "w_stat": 7.0,
+    "w_pvalue": 1.0,
+    "mean_diff": 0.0011
+  },
+  {
+    "Comparison": "ICL-full vs Baseline (Cross-Attn 650M)",
+    "Model A": "Cross-Attn 650M ICL-full",
+    "Model B": "Cross-Attn 650M Baseline",
+    "n": 5,
+    "t_stat": 3.7449,
+    "t_pvalue": 0.02,
+    "w_stat": 0.0,
+    "w_pvalue": 0.0625,
+    "mean_diff": 0.024
+  },
+  {
+    "Comparison": "ICL-full vs Alpha (Cross-Attn 650M)",
+    "Model A": "Cross-Attn 650M ICL-full",
+    "Model B": "Cross-Attn 650M Alpha",
+    "n": 5,
+    "t_stat": 1.428,
+    "t_pvalue": 0.2265,
+    "w_stat": 3.0,
+    "w_pvalue": 0.3125,
+    "mean_diff": 0.0019
+  },
+  {
+    "Comparison": "650M vs 8M Baseline (Cross-Attn)",
+    "Model A": "Cross-Attn 650M Baseline",
+    "Model B": "Cross-Attn 8M Baseline",
+    "n": 5,
+    "t_stat": 2.728,
+    "t_pvalue": 0.0525,
+    "w_stat": 0.0,
+    "w_pvalue": 0.0625,
+    "mean_diff": 0.0219
+  },
+  {
+    "Comparison": "650M vs 8M ICL-full (Cross-Attn)",
+    "Model A": "Cross-Attn 650M ICL-full",
+    "Model B": "Cross-Attn 8M ICL-full",
+    "n": 5,
+    "t_stat": 4.7995,
+    "t_pvalue": 0.0087,
+    "w_stat": 0.0,
+    "w_pvalue": 0.0625,
+    "mean_diff": 0.0372
+  },
+  {
+    "Comparison": "ICL-full vs Baseline (SVM 8M)",
+    "Model A": "SVM 8M ICL-full",
+    "Model B": "SVM 8M Baseline",
+    "n": 5,
+    "t_stat": 3.2556,
+    "t_pvalue": 0.0312,
+    "w_stat": 0.0,
+    "w_pvalue": 0.0625,
+    "mean_diff": 0.033
+  },
+  {
+    "Comparison": "Cross-Attn vs SVM (8M Baseline)",
+    "Model A": "Cross-Attn 8M Baseline",
+    "Model B": "SVM 8M Baseline",
+    "n": 5,
+    "t_stat": 3.0858,
+    "t_pvalue": 0.0367,
+    "w_stat": 0.0,
+    "w_pvalue": 0.0625,
+    "mean_diff": 0.0188
+  },
+  {
+    "Comparison": "Cross-Attn vs SVM (8M ICL-full)",
+    "Model A": "Cross-Attn 8M ICL-full",
+    "Model B": "SVM 8M ICL-full",
+    "n": 5,
+    "t_stat": -0.9343,
+    "t_pvalue": 0.4031,
+    "w_stat": 4.0,
+    "w_pvalue": 0.4375,
+    "mean_diff": -0.0054
+  },
+  {
+    "Comparison": "MLP vs RF (650M ICL-full)",
+    "Model A": "MLP 650M ICL-full",
+    "Model B": "RF 650M ICL-full",
+    "n": 5,
+    "t_stat": 4.3245,
+    "t_pvalue": 0.0124,
+    "w_stat": 0.0,
+    "w_pvalue": 0.0625,
+    "mean_diff": 0.0345
+  },
+  {
+    "Comparison": "MLP vs XGBoost (650M ICL-full)",
+    "Model A": "MLP 650M ICL-full",
+    "Model B": "XGBoost 650M ICL-full",
+    "n": 5,
+    "t_stat": 4.6461,
+    "t_pvalue": 0.0097,
+    "w_stat": 0.0,
+    "w_pvalue": 0.0625,
+    "mean_diff": 0.0277
+  }
+]

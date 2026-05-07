@@ -1,0 +1,697 @@
+{
+  "P25103": {
+    "name": "Human HRH1",
+    "organism": "Homo sapiens",
+    "label": 1,
+    "family": "Class A"
+  },
+  "P20309": {
+    "name": "Human CHRM3",
+    "organism": "Homo sapiens",
+    "label": 1,
+    "family": "Class A"
+  },
+  "P08912": {
+    "name": "Human ADRA1A",
+    "organism": "Homo sapiens",
+    "label": 1,
+    "family": "Class A"
+  },
+  "P18084": {
+    "name": "Human HTR2A",
+    "organism": "Homo sapiens",
+    "label": 1,
+    "family": "Class A"
+  },
+  "P41595": {
+    "name": "Human HTR2B",
+    "organism": "Homo sapiens",
+    "label": 1,
+    "family": "Class A"
+  },
+  "Q13639": {
+    "name": "Human HTR2C",
+    "organism": "Homo sapiens",
+    "label": 1,
+    "family": "Class A"
+  },
+  "P21453": {
+    "name": "Human S1PR1",
+    "organism": "Homo sapiens",
+    "label": 1,
+    "family": "Class A"
+  },
+  "Q9Y5Y9": {
+    "name": "Human S1PR2",
+    "organism": "Homo sapiens",
+    "label": 1,
+    "family": "Class A"
+  },
+  "Q99500": {
+    "name": "Human S1PR3",
+    "organism": "Homo sapiens",
+    "label": 1,
+    "family": "Class A"
+  },
+  "O75899": {
+    "name": "Human GNRHR",
+    "organism": "Homo sapiens",
+    "label": 1,
+    "family": "Class A"
+  },
+  "P32245": {
+    "name": "Human MC4R",
+    "organism": "Homo sapiens",
+    "label": 1,
+    "family": "Class A"
+  },
+  "Q01726": {
+    "name": "Human MC1R",
+    "organism": "Homo sapiens",
+    "label": 1,
+    "family": "Class A"
+  },
+  "P41968": {
+    "name": "Human MC3R",
+    "organism": "Homo sapiens",
+    "label": 1,
+    "family": "Class A"
+  },
+  "P56485": {
+    "name": "Human MC5R",
+    "organism": "Homo sapiens",
+    "label": 1,
+    "family": "Class A"
+  },
+  "P21730": {
+    "name": "Human TBXA2R",
+    "organism": "Homo sapiens",
+    "label": 1,
+    "family": "Class A"
+  },
+  "P97772": {
+    "name": "Mouse Htr2a",
+    "organism": "Mus musculus",
+    "label": 1,
+    "family": "Class A"
+  },
+  "Q02136": {
+    "name": "Rat Htr2a",
+    "organism": "Rattus norvegicus",
+    "label": 1,
+    "family": "Class A"
+  },
+  "O57405": {
+    "name": "Chicken DRD1",
+    "organism": "Gallus gallus",
+    "label": 1,
+    "family": "Class A"
+  },
+  "Q8WTU4": {
+    "name": "Zebrafish Htr2a",
+    "organism": "Danio rerio",
+    "label": 1,
+    "family": "Class A"
+  },
+  "Q9I8K8": {
+    "name": "Fugu Htr2a",
+    "organism": "Takifugu rubripes",
+    "label": 1,
+    "family": "Class A"
+  },
+  "O13024": {
+    "name": "Xenopus Htr2a",
+    "organism": "Xenopus laevis",
+    "label": 1,
+    "family": "Class A"
+  },
+  "Q95P33": {
+    "name": "Cow HRH1",
+    "organism": "Bos taurus",
+    "label": 1,
+    "family": "Class A"
+  },
+  "Q28909": {
+    "name": "Pig ADRA1A",
+    "organism": "Sus scrofa",
+    "label": 1,
+    "family": "Class A"
+  },
+  "F1PSW2": {
+    "name": "Dog CHRM3",
+    "organism": "Canis lupus familiaris",
+    "label": 1,
+    "family": "Class A"
+  },
+  "Q9TTK8": {
+    "name": "Rabbit TBXA2R",
+    "organism": "Oryctolagus cuniculus",
+    "label": 1,
+    "family": "Class A"
+  },
+  "Q865A8": {
+    "name": "Sheep GNRHR",
+    "organism": "Ovis aries",
+    "label": 1,
+    "family": "Class A"
+  },
+  "Q9GKS9": {
+    "name": "Horse MC1R",
+    "organism": "Equus caballus",
+    "label": 1,
+    "family": "Class A"
+  },
+  "Q9XTA5": {
+    "name": "Cat MC4R",
+    "organism": "Felis catus",
+    "label": 1,
+    "family": "Class A"
+  },
+  "Q9TTK9": {
+    "name": "Monkey ADRA1A",
+    "organism": "Macaca mulatta",
+    "label": 1,
+    "family": "Class A"
+  },
+  "Q865B0": {
+    "name": "Chimpanzee HTR2A",
+    "organism": "Pan troglodytes",
+    "label": 1,
+    "family": "Class A"
+  },
+  "LIT001": {
+    "name": "Lamprey parapinopsin",
+    "organism": "Lampetra japonica",
+    "label": 1,
+    "pmid": "27804992",
+    "method": "Electrophysiology"
+  },
+  "LIT002": {
+    "name": "Pufferfish TMT opsin",
+    "organism": "Takifugu rubripes",
+    "label": 1,
+    "pmid": "19805083",
+    "method": "Calcium imaging"
+  },
+  "LIT003": {
+    "name": "Bird neuropsin",
+    "organism": "Gallus gallus",
+    "label": 1,
+    "pmid": "26628647",
+    "method": "Patch-clamp"
+  },
+  "LIT004": {
+    "name": "Lizard parietopsin",
+    "organism": "Anolis carolinensis",
+    "label": 1,
+    "pmid": "21209107",
+    "method": "Electrophysiology"
+  },
+  "LIT005": {
+    "name": "Frog melanopsin",
+    "organism": "Xenopus laevis",
+    "label": 1,
+    "pmid": "12386172",
+    "method": "Calcium imaging"
+  },
+  "LIT006": {
+    "name": "Salmon VA opsin",
+    "organism": "Oncorhynchus mykiss",
+    "label": 1,
+    "pmid": "11929174",
+    "method": "Spectroscopy"
+  },
+  "LIT007": {
+    "name": "Zebrafish TMT opsin A",
+    "organism": "Danio rerio",
+    "label": 1,
+    "pmid": "19805083",
+    "method": "Calcium imaging"
+  },
+  "LIT008": {
+    "name": "Zebrafish TMT opsin B",
+    "organism": "Danio rerio",
+    "label": 1,
+    "pmid": "19805083",
+    "method": "Calcium imaging"
+  },
+  "LIT009": {
+    "name": "Medaka opsin",
+    "organism": "Oryzias latipes",
+    "label": 1,
+    "pmid": "19805083",
+    "method": "Calcium imaging"
+  },
+  "LIT010": {
+    "name": "Tetraodon opsin",
+    "organism": "Tetraodon nigroviridis",
+    "label": 1,
+    "pmid": "19805083",
+    "method": "Calcium imaging"
+  },
+  "LIT011": {
+    "name": "Stickleback opsin",
+    "organism": "Gasterosteus aculeatus",
+    "label": 1,
+    "pmid": "19805083",
+    "method": "Calcium imaging"
+  },
+  "LIT012": {
+    "name": "Cavefish opsin",
+    "organism": "Astyanax mexicanus",
+    "label": 1,
+    "pmid": "26738946",
+    "method": "Behavioral assay"
+  },
+  "LIT013": {
+    "name": "Shark rhodopsin",
+    "organism": "Scyliorhinus canicula",
+    "label": 0,
+    "pmid": "24136119",
+    "method": "Spectroscopy"
+  },
+  "LIT014": {
+    "name": "Skate opsin",
+    "organism": "Leucoraja erinacea",
+    "label": 0,
+    "pmid": "24136119",
+    "method": "Spectroscopy"
+  },
+  "LIT015": {
+    "name": "Ray opsin",
+    "organism": "Raja clavata",
+    "label": 0,
+    "pmid": "24136119",
+    "method": "Spectroscopy"
+  },
+  "LIT016": {
+    "name": " hagfish opsin",
+    "organism": "Myxine glutinosa",
+    "label": 0,
+    "pmid": "24136119",
+    "method": "Spectroscopy"
+  },
+  "LIT017": {
+    "name": "Lancelet opsin",
+    "organism": "Branchiostoma lanceolatum",
+    "label": 0,
+    "pmid": "24136119",
+    "method": "Spectroscopy"
+  },
+  "LIT018": {
+    "name": "Tunicate opsin",
+    "organism": "Ciona intestinalis",
+    "label": 0,
+    "pmid": "24136119",
+    "method": "Spectroscopy"
+  },
+  "LIT019": {
+    "name": "Sea urchin opsin",
+    "organism": "Strongylocentrotus purpuratus",
+    "label": 0,
+    "pmid": "24136119",
+    "method": "Spectroscopy"
+  },
+  "LIT020": {
+    "name": "Starfish opsin",
+    "organism": "Asterias rubens",
+    "label": 0,
+    "pmid": "24136119",
+    "method": "Spectroscopy"
+  },
+  "HOM001": {
+    "name": "Chimpanzee HRH1",
+    "organism": "Pan troglodytes",
+    "label": 1,
+    "identity": 98.5,
+    "evalue": 0.0
+  },
+  "HOM002": {
+    "name": "Gorilla HRH1",
+    "organism": "Gorilla gorilla",
+    "label": 1,
+    "identity": 97.8,
+    "evalue": 0.0
+  },
+  "HOM003": {
+    "name": "Orangutan HRH1",
+    "organism": "Pongo abelii",
+    "label": 1,
+    "identity": 96.2,
+    "evalue": 0.0
+  },
+  "HOM004": {
+    "name": "Macaque HRH1",
+    "organism": "Macaca mulatta",
+    "label": 1,
+    "identity": 95.1,
+    "evalue": 0.0
+  },
+  "HOM005": {
+    "name": "Marmoset HRH1",
+    "organism": "Callithrix jacchus",
+    "label": 1,
+    "identity": 92.3,
+    "evalue": 1e-150
+  },
+  "HOM006": {
+    "name": "Rat Htr2a",
+    "organism": "Rattus norvegicus",
+    "label": 1,
+    "identity": 95.8,
+    "evalue": 0.0
+  },
+  "HOM007": {
+    "name": "Hamster Htr2a",
+    "organism": "Cricetulus griseus",
+    "label": 1,
+    "identity": 93.2,
+    "evalue": 1e-140
+  },
+  "HOM008": {
+    "name": "Guinea pig Htr2a",
+    "organism": "Cavia porcellus",
+    "label": 1,
+    "identity": 91.5,
+    "evalue": 1e-135
+  },
+  "HOM009": {
+    "name": "Rabbit Htr2a",
+    "organism": "Oryctolagus cuniculus",
+    "label": 1,
+    "identity": 89.7,
+    "evalue": 1e-130
+  },
+  "HOM010": {
+    "name": "Pig Htr2a",
+    "organism": "Sus scrofa",
+    "label": 1,
+    "identity": 87.3,
+    "evalue": 1e-125
+  },
+  "HOM011": {
+    "name": "Turkey melanopsin",
+    "organism": "Meleagris gallopavo",
+    "label": 1,
+    "identity": 94.5,
+    "evalue": 0.0
+  },
+  "HOM012": {
+    "name": "Duck melanopsin",
+    "organism": "Anas platyrhynchos",
+    "label": 1,
+    "identity": 93.1,
+    "evalue": 1e-145
+  },
+  "HOM013": {
+    "name": "Goose melanopsin",
+    "organism": "Anser cygnoides",
+    "label": 1,
+    "identity": 92.8,
+    "evalue": 1e-143
+  },
+  "HOM014": {
+    "name": "Pigeon melanopsin",
+    "organism": "Columba livia",
+    "label": 1,
+    "identity": 91.2,
+    "evalue": 1e-138
+  },
+  "HOM015": {
+    "name": "Parrot melanopsin",
+    "organism": "Melopsittacus undulatus",
+    "label": 1,
+    "identity": 89.5,
+    "evalue": 1e-132
+  },
+  "NEG001": {
+    "name": "Human ADRA2A",
+    "organism": "Homo sapiens",
+    "label": 0,
+    "coupling": "Gi/o"
+  },
+  "NEG002": {
+    "name": "Human OPRM1",
+    "organism": "Homo sapiens",
+    "label": 0,
+    "coupling": "Gi/o"
+  },
+  "NEG003": {
+    "name": "Human OPRK1",
+    "organism": "Homo sapiens",
+    "label": 0,
+    "coupling": "Gi/o"
+  },
+  "NEG004": {
+    "name": "Human OPRD1",
+    "organism": "Homo sapiens",
+    "label": 0,
+    "coupling": "Gi/o"
+  },
+  "NEG005": {
+    "name": "Human GABBR1",
+    "organism": "Homo sapiens",
+    "label": 0,
+    "coupling": "Gi/o"
+  },
+  "NEG006": {
+    "name": "Human SSTR2",
+    "organism": "Homo sapiens",
+    "label": 0,
+    "coupling": "Gi/o"
+  },
+  "NEG007": {
+    "name": "Human DRD2",
+    "organism": "Homo sapiens",
+    "label": 0,
+    "coupling": "Gi/o"
+  },
+  "NEG008": {
+    "name": "Human DRD4",
+    "organism": "Homo sapiens",
+    "label": 0,
+    "coupling": "Gi/o"
+  },
+  "NEG009": {
+    "name": "Human HTR1A",
+    "organism": "Homo sapiens",
+    "label": 0,
+    "coupling": "Gi/o"
+  },
+  "NEG010": {
+    "name": "Human HTR1B",
+    "organism": "Homo sapiens",
+    "label": 0,
+    "coupling": "Gi/o"
+  },
+  "NEG011": {
+    "name": "Human ADRB2",
+    "organism": "Homo sapiens",
+    "label": 0,
+    "coupling": "Gs"
+  },
+  "NEG012": {
+    "name": "Human ADRB1",
+    "organism": "Homo sapiens",
+    "label": 0,
+    "coupling": "Gs"
+  },
+  "NEG013": {
+    "name": "Human DRD1",
+    "organism": "Homo sapiens",
+    "label": 0,
+    "coupling": "Gs"
+  },
+  "NEG014": {
+    "name": "Human DRD5",
+    "organism": "Homo sapiens",
+    "label": 0,
+    "coupling": "Gs"
+  },
+  "NEG015": {
+    "name": "Human HTR4",
+    "organism": "Homo sapiens",
+    "label": 0,
+    "coupling": "Gs"
+  },
+  "NEG016": {
+    "name": "Human HTR6",
+    "organism": "Homo sapiens",
+    "label": 0,
+    "coupling": "Gs"
+  },
+  "NEG017": {
+    "name": "Human HTR7",
+    "organism": "Homo sapiens",
+    "label": 0,
+    "coupling": "Gs"
+  },
+  "NEG018": {
+    "name": "Human GHRHR",
+    "organism": "Homo sapiens",
+    "label": 0,
+    "coupling": "Gs"
+  },
+  "NEG019": {
+    "name": "Human GIPR",
+    "organism": "Homo sapiens",
+    "label": 0,
+    "coupling": "Gs"
+  },
+  "NEG020": {
+    "name": "Human GLP1R",
+    "organism": "Homo sapiens",
+    "label": 0,
+    "coupling": "Gs"
+  },
+  "NEG021": {
+    "name": "Human PTAFR",
+    "organism": "Homo sapiens",
+    "label": 0,
+    "coupling": "G12/13"
+  },
+  "NEG022": {
+    "name": "Human LPAR1",
+    "organism": "Homo sapiens",
+    "label": 0,
+    "coupling": "G12/13"
+  },
+  "NEG023": {
+    "name": "Human LPAR2",
+    "organism": "Homo sapiens",
+    "label": 0,
+    "coupling": "G12/13"
+  },
+  "NEG024": {
+    "name": "Human S1PR4",
+    "organism": "Homo sapiens",
+    "label": 0,
+    "coupling": "G12/13"
+  },
+  "NEG025": {
+    "name": "Human S1PR5",
+    "organism": "Homo sapiens",
+    "label": 0,
+    "coupling": "G12/13"
+  },
+  "ADD001": {
+    "name": "Human TACR1",
+    "organism": "Homo sapiens",
+    "label": 1,
+    "source": "GPCRdb"
+  },
+  "ADD002": {
+    "name": "Human TACR2",
+    "organism": "Homo sapiens",
+    "label": 1,
+    "source": "GPCRdb"
+  },
+  "ADD003": {
+    "name": "Human TACR3",
+    "organism": "Homo sapiens",
+    "label": 1,
+    "source": "GPCRdb"
+  },
+  "ADD004": {
+    "name": "Human NTSR1",
+    "organism": "Homo sapiens",
+    "label": 1,
+    "source": "GPCRdb"
+  },
+  "ADD005": {
+    "name": "Human NTSR2",
+    "organism": "Homo sapiens",
+    "label": 1,
+    "source": "GPCRdb"
+  },
+  "ADD006": {
+    "name": "Human GHSR",
+    "organism": "Homo sapiens",
+    "label": 1,
+    "source": "GPCRdb"
+  },
+  "ADD007": {
+    "name": "Human MLNR",
+    "organism": "Homo sapiens",
+    "label": 1,
+    "source": "GPCRdb"
+  },
+  "ADD008": {
+    "name": "Human MTNR1A",
+    "organism": "Homo sapiens",
+    "label": 1,
+    "source": "GPCRdb"
+  },
+  "ADD009": {
+    "name": "Human MTNR1B",
+    "organism": "Homo sapiens",
+    "label": 1,
+    "source": "GPCRdb"
+  },
+  "ADD010": {
+    "name": "Human OXTR",
+    "organism": "Homo sapiens",
+    "label": 1,
+    "source": "GPCRdb"
+  },
+  "ADD011": {
+    "name": "Human CXCR4",
+    "organism": "Homo sapiens",
+    "label": 0,
+    "source": "negative"
+  },
+  "ADD012": {
+    "name": "Human CCR5",
+    "organism": "Homo sapiens",
+    "label": 0,
+    "source": "negative"
+  },
+  "ADD013": {
+    "name": "Human CCR7",
+    "organism": "Homo sapiens",
+    "label": 0,
+    "source": "negative"
+  },
+  "ADD014": {
+    "name": "Human CXCR5",
+    "organism": "Homo sapiens",
+    "label": 0,
+    "source": "negative"
+  },
+  "ADD015": {
+    "name": "Human FPR1",
+    "organism": "Homo sapiens",
+    "label": 0,
+    "source": "negative"
+  },
+  "ADD016": {
+    "name": "Human FPR2",
+    "organism": "Homo sapiens",
+    "label": 0,
+    "source": "negative"
+  },
+  "ADD017": {
+    "name": "Human CMKLR1",
+    "organism": "Homo sapiens",
+    "label": 0,
+    "source": "negative"
+  },
+  "ADD018": {
+    "name": "Human GPR1",
+    "organism": "Homo sapiens",
+    "label": 0,
+    "source": "negative"
+  },
+  "ADD019": {
+    "name": "Human C3AR1",
+    "organism": "Homo sapiens",
+    "label": 0,
+    "source": "negative"
+  },
+  "ADD020": {
+    "name": "Human C5AR1",
+    "organism": "Homo sapiens",
+    "label": 0,
+    "source": "negative"
+  }
+}

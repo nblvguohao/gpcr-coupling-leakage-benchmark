@@ -1,0 +1,7 @@
+Highlights
+
+• Large-scale pairwise prediction: 1,639 pairs across 448 receptors and four families
+• UniProt-curated TM annotations achieve 98.8% exact 7-TM coverage for ICL2/3 extraction
+• Topology-aware cluster CV AUC rises from 0.797 to 0.830
+• ICL3 length and ICL2 aromatic ratio exceed mean global ESM-2 importance
+• Cross-family evaluation reveals probability degeneracy in concatenated embeddings

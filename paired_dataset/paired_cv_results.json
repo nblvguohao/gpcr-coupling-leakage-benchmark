@@ -1,0 +1,114 @@
+{
+  "random_cv": {
+    "SVM-RBF C=10 balanced": {
+      "auc_mean": 0.8146,
+      "auc_std": 0.0311,
+      "fold_aucs": [
+        0.8281,
+        0.779,
+        0.7763,
+        0.8516,
+        0.8382
+      ]
+    },
+    "SVM-RBF C=1 balanced": {
+      "auc_mean": 0.8036,
+      "auc_std": 0.0382,
+      "fold_aucs": [
+        0.7866,
+        0.7432,
+        0.7993,
+        0.8425,
+        0.8464
+      ]
+    },
+    "SVM-Linear C=1 balanced": {
+      "auc_mean": 0.7199,
+      "auc_std": 0.0221,
+      "fold_aucs": [
+        0.7378,
+        0.6846,
+        0.7474,
+        0.7211,
+        0.7086
+      ]
+    }
+  },
+  "cluster_cv": {
+    "SVM-RBF C=10 balanced": {
+      "auc_mean": 0.7972,
+      "auc_std": 0.022,
+      "fold_aucs": [
+        0.8246,
+        0.8165,
+        0.7707,
+        0.8009,
+        0.773
+      ]
+    },
+    "SVM-RBF C=1 balanced": {
+      "auc_mean": 0.7912,
+      "auc_std": 0.0289,
+      "fold_aucs": [
+        0.8419,
+        0.7908,
+        0.7537,
+        0.7926,
+        0.7772
+      ]
+    },
+    "SVM-Linear C=1 balanced": {
+      "auc_mean": 0.6933,
+      "auc_std": 0.0143,
+      "fold_aucs": [
+        0.6879,
+        0.7054,
+        0.6988,
+        0.6678,
+        0.7064
+      ]
+    }
+  },
+  "logpso_cv": {
+    "G12_13": {
+      "n_train": 1242,
+      "n_test": 397,
+      "auc": 0.6331,
+      "accuracy": 0.9345,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+    },
+    "Gi": {
+      "n_train": 1242,
+      "n_test": 397,
+      "auc": 0.6434,
+      "accuracy": 0.5995,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+    },
+    "Gq": {
+      "n_train": 1191,
+      "n_test": 448,
+      "auc": 0.6624,
+      "accuracy": 0.6607,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+    },
+    "Gs": {
+      "n_train": 1242,
+      "n_test": 397,
+      "auc": 0.6136,
+      "accuracy": 0.7985,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+    }
+  },
+  "n_samples": 1639,
+  "n_positive": 417,
+  "n_negative": 1222,
+  "feature_dim": 640
+}

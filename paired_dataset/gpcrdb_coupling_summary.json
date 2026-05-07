@@ -1,0 +1,18 @@
+{
+  "n_pairs": 1647,
+  "n_unique_gpcrs": 450,
+  "family_counts": {
+    "Gq": 450,
+    "Gs": 399,
+    "Gi": 399,
+    "G12_13": 399
+  },
+  "coupling_counts": {
+    "0": 1226,
+    "1": 421
+  },
+  "sources": {
+    "gpcrdb_iuphar": 1596,
+    "local_seed": 51
+  }
+}

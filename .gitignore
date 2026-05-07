@@ -1,0 +1,49 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+
+# LaTeX aux
+*.aux
+*.log
+*.out
+*.bbl
+*.blg
+*.toc
+*.lof
+*.lot
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+
+# Data
+paired_dataset/gpcr_esm_features_650m.json
+paired_dataset/icl_features_650m.json
+paired_dataset/icl_features.json
+paired_dataset/g_protein_esm_features.json
+paired_dataset/alphafold_structure_features.json
+paired_dataset/sgsp_embeddings_650m.json
+dssp_data/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.code-workspace
+
+# Large binaries
+bin/
+*.zip
+*.conda
+*.exe
+
+# Temp
+server_sync/
+merged_dataset/
+__pycache__/

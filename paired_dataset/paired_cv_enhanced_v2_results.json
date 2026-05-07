@@ -1,0 +1,222 @@
+{
+  "baseline": {
+    "random_cv": {
+      "SVM-RBF C=10 balanced": {
+        "auc_mean": 0.8146,
+        "auc_std": 0.0311,
+        "acc_mean": 0.7755
+      }
+    },
+    "cluster_cv": {
+      "auc_mean": 0.7982,
+      "auc_std": 0.0144,
+      "acc_mean": 0.7657
+    },
+    "logpso": {
+      "Gq": {
+        "auc": 0.6624177631578947,
+        "accuracy": 0.6607142857142857,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "Gi": {
+        "auc": 0.6433592304846467,
+        "accuracy": 0.5994962216624685,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "Gs": {
+        "auc": 0.6136041009463723,
+        "accuracy": 0.7984886649874056,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "G12_13": {
+        "auc": 0.63311217084802,
+        "accuracy": 0.9345088161209067,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      }
+    }
+  },
+  "icl_stats": {
+    "random_cv": {
+      "SVM-RBF C=10 balanced": {
+        "auc_mean": 0.8146,
+        "auc_std": 0.0311,
+        "acc_mean": 0.7755
+      }
+    },
+    "cluster_cv": {
+      "auc_mean": 0.7982,
+      "auc_std": 0.0144,
+      "acc_mean": 0.7657
+    },
+    "logpso": {
+      "Gq": {
+        "auc": 0.6624177631578947,
+        "accuracy": 0.6607142857142857,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "Gi": {
+        "auc": 0.6433592304846467,
+        "accuracy": 0.5994962216624685,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "Gs": {
+        "auc": 0.6136041009463723,
+        "accuracy": 0.7984886649874056,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "G12_13": {
+        "auc": 0.63311217084802,
+        "accuracy": 0.9345088161209067,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      }
+    }
+  },
+  "icl_full": {
+    "random_cv": {
+      "SVM-RBF C=10 balanced": {
+        "auc_mean": 0.8146,
+        "auc_std": 0.0311,
+        "acc_mean": 0.7755
+      }
+    },
+    "cluster_cv": {
+      "auc_mean": 0.7982,
+      "auc_std": 0.0144,
+      "acc_mean": 0.7657
+    },
+    "logpso": {
+      "Gq": {
+        "auc": 0.6624177631578947,
+        "accuracy": 0.6607142857142857,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "Gi": {
+        "auc": 0.6433592304846467,
+        "accuracy": 0.5994962216624685,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "Gs": {
+        "auc": 0.6136041009463723,
+        "accuracy": 0.7984886649874056,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "G12_13": {
+        "auc": 0.63311217084802,
+        "accuracy": 0.9345088161209067,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      }
+    }
+  },
+  "icl_stats_v2": {
+    "random_cv": {
+      "SVM-RBF C=10 balanced": {
+        "auc_mean": 0.8483,
+        "auc_std": 0.0199,
+        "acc_mean": 0.8011
+      }
+    },
+    "cluster_cv": {
+      "auc_mean": 0.8359,
+      "auc_std": 0.0193,
+      "acc_mean": 0.8029
+    },
+    "logpso": {
+      "Gq": {
+        "auc": 0.6437144381223329,
+        "accuracy": 0.6607142857142857,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "Gi": {
+        "auc": 0.6184926800909043,
+        "accuracy": 0.5994962216624685,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "Gs": {
+        "auc": 0.6053233438485804,
+        "accuracy": 0.7984886649874056,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "G12_13": {
+        "auc": 0.6557122123159859,
+        "accuracy": 0.9345088161209067,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      }
+    }
+  },
+  "icl_full_v2": {
+    "random_cv": {
+      "SVM-RBF C=10 balanced": {
+        "auc_mean": 0.8475,
+        "auc_std": 0.0151,
+        "acc_mean": 0.8164
+      }
+    },
+    "cluster_cv": {
+      "auc_mean": 0.8419,
+      "auc_std": 0.0048,
+      "acc_mean": 0.8261
+    },
+    "logpso": {
+      "Gq": {
+        "auc": 0.6126200213371266,
+        "accuracy": 0.6607142857142857,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "Gi": {
+        "auc": 0.5759473600761058,
+        "accuracy": 0.5994962216624685,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "Gs": {
+        "auc": 0.5985410094637225,
+        "accuracy": 0.7984886649874056,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "G12_13": {
+        "auc": 0.6375699771926187,
+        "accuracy": 0.9345088161209067,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      }
+    }
+  }
+}

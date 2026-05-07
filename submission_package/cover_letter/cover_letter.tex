@@ -1,0 +1,74 @@
+\documentclass[11pt]{letter}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{hyperref}
+
+\signature{Qingyong Wang and Lichuan Gu}
+\address{School of Artificial Intelligence\\
+Anhui Agricultural University\\
+Hefei 230036, China\\
+Email: wqy@ahau.edu.cn; glc@ahau.edu.cn}
+
+\begin{document}
+
+\begin{letter}{Editorial Office\\
+Bioinformatics\\
+Oxford University Press\\
+Great Clarendon Street\\
+Oxford OX2 6DP\\
+United Kingdom}
+
+\opening{Dear Editor,}
+
+We are pleased to submit our manuscript entitled:
+
+\textbf{``Large-scale paired prediction of GPCR--G protein coupling specificity with protein language models and topology-aware features''}
+
+for consideration as an \textbf{Original Paper} in \textit{Bioinformatics}.
+
+\textbf{Summary}
+
+Predicting GPCR--G protein coupling specificity is a long-standing challenge in computational biology, with direct implications for orphan receptor deorphanization and rational drug design. In this study, we present a systematic computational framework that reformulates the problem as paired (GPCR, G protein family) binary classification, using a curated dataset of 1,647 experimentally annotated pairs spanning 431 GPCRs and 4 G protein families.
+
+Our main contributions are:
+
+\begin{enumerate}
+    \item \textbf{Systematic architecture comparison:} We benchmark SVM (RBF), cross-attention deep networks, multi-task learning, MLP, Random Forest, and XGBoost under identical conditions, using ESM-2 embeddings at two scales (8M, 650M).
+
+    \item \textbf{Topology-aware ICL features:} Using UniProt transmembrane annotations, we extract ICL2/3 local features and demonstrate a critical \textbf{dimension alignment requirement}: local features must match the global embedding dimension.
+
+    \item \textbf{Negative result with practical impact:} 38-dimensional AlphaFold structural descriptors provide no incremental benefit beyond ESM-2 650M + ICL, suggesting that high-capacity PLMs implicitly encode sufficient structural information---a finding with practical implications for future work.
+
+    \item \textbf{Multi-task analysis:} We show that removing G protein identity information degrades AUC from 0.862 to 0.802, confirming the paired formulation is essential.
+\end{enumerate}
+
+The best-performing model (cross-attention + 650M ESM-2 + ICL features) achieves an AUC of 0.8619 $\pm$ 0.0249 under strict cluster-aware cross-validation, significantly outperforming SVM (0.8331).
+
+\textbf{Why Bioinformatics?}
+
+We believe this work is well-suited for \textit{Bioinformatics} because it provides (i) a rigorous benchmarking framework for GPCR--G protein coupling prediction, (ii) generalizable methodological insights (dimension alignment, AlphaFold redundancy) that apply beyond this specific task, and (iii) fully reproducible code and data.
+
+\textbf{Data and Code Availability}
+
+All code, data, and documentation are publicly available at \url{https://github.com/nblvguohao/topology-aware-gpcr-coupling} and archived on Zenodo.
+
+\textbf{Conflict of Interest}
+
+The authors declare no competing interests.
+
+\closing{Thank you for considering our submission. We look forward to your response.}
+
+\vspace{1cm}
+
+Sincerely,
+
+\vspace{0.5cm}
+
+\textbf{Qingyong Wang and Lichuan Gu}
+
+On behalf of all co-authors
+
+\end{letter}
+
+\end{document}

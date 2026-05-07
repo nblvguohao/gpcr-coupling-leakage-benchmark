@@ -1,0 +1,18 @@
+\contentsline {section}{\numberline {1}Supplementary Methods}{2}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Pairing matrix construction}{2}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Homology clustering and cluster-aware cross-validation}{2}{subsection.1.2}%
+\contentsline {subsubsection}{\numberline {1.2.1}Cluster-aware CV algorithm}{2}{subsubsection.1.2.1}%
+\contentsline {subsection}{\numberline {1.3}UniProt transmembrane annotation pipeline}{2}{subsection.1.3}%
+\contentsline {subsection}{\numberline {1.4}ICL2/3 feature extraction}{3}{subsection.1.4}%
+\contentsline {subsection}{\numberline {1.5}MLP baseline architecture}{3}{subsection.1.5}%
+\contentsline {subsection}{\numberline {1.6}LOGPSO (Leave-One-G-Protein-Family-Out)}{4}{subsection.1.6}%
+\contentsline {section}{\numberline {2}Supplementary Tables}{4}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Complete ablation results}{4}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}F1-max and PR-AUC computation protocol}{4}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}LOGPSO per-family results}{4}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Permutation importance of ICL2/3 statistics}{5}{subsection.2.4}%
+\contentsline {section}{\numberline {3}Supplementary Figures}{6}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Figure S1: Performance comparison across CV strategies}{6}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Figure S2: ICL2/3 permutation importance}{7}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Figure S3: SHAP residue-region mapping}{7}{subsection.3.3}%
+\contentsline {section}{\numberline {4}Code and Data Availability}{7}{section.4}%

@@ -1,0 +1,9 @@
+{
+  "mean_delta_p": 0.6338284634760706,
+  "median_delta_p": 0.9999,
+  "frac_delta_over_0.1": 0.6423173803526449,
+  "frac_delta_over_0.3": 0.6372795969773299,
+  "frac_delta_over_0.5": 0.6372795969773299,
+  "within_gpcr_ranking_accuracy": 1.0,
+  "ranking_comparisons": 825
+}
