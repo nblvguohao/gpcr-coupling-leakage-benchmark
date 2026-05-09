@@ -10,20 +10,24 @@ from matplotlib.patches import FancyBboxPatch, FancyArrowPatch, Circle, Rectangl
 import numpy as np
 from pathlib import Path
 
+from style_config import apply_style, WONG
+
+apply_style()
+
 BASE = Path(__file__).parent
 FIG_DIR = BASE.parent / "figures"
 FIG_DIR.mkdir(exist_ok=True)
 
-# Color palette (consistent with other figures)
+# Wong colorblind-safe palette
 COLORS = {
-    "gpcr": "#3498db",
-    "gprot": "#e74c3c",
-    "icl": "#2ecc71",
-    "alpha": "#f39c12",
-    "esm": "#9b59b6",
-    "box_bg": "#ecf0f1",
-    "arrow": "#2c3e50",
-    "text": "#2c3e50",
+    "gpcr":    WONG["blue"],
+    "gprot":   WONG["orange"],
+    "icl":     WONG["green"],
+    "alpha":   WONG["yellow"],
+    "esm":     WONG["cyan"],
+    "box_bg":  "#ecf0f1",
+    "arrow":   WONG["dark"],
+    "text":    WONG["dark"],
 }
 
 
@@ -71,7 +75,7 @@ def panel_a(ax):
     fam_colors = ["#3498db", "#e74c3c", "#f39c12", "#9b59b6"]
     fam_names = ["Gq\n(388)", "Gi\n(406)", "Gs\n(298)", "G12/13\n(173)"]
     for i, (name, c) in enumerate(zip(fam_names, fam_colors)):
-        draw_box(ax, (6.4 + i*0.85, fam_y - (i%2)*1.2), 0.75, 0.9, name, c, fontsize=7)
+        draw_box(ax, (6.4 + i*0.85, fam_y - (i%2)*1.2), 0.75, 0.9, name, c, fontsize=8)
         ax.annotate("", xy=(6.8 + i*0.85, fam_y + 1.0 if i%2==0 else fam_y - 0.4),
                     xytext=(7.1, 6.5),
                     arrowprops=dict(arrowstyle="->", color="gray", lw=0.8),
@@ -130,7 +134,7 @@ def panel_b(ax):
     draw_box(ax, (7.7, 4.0), 1.6, 1.0, "AlphaFold\n(38-d)", COLORS["alpha"], fontsize=8)
     ax.annotate("", xy=(8.5, 5.8), xytext=(8.5, 5.0),
                 arrowprops=dict(arrowstyle="->", color="gray", lw=0.8, ls="--"))
-    ax.text(8.8, 5.4, "optional", fontsize=7, color="gray", style="italic")
+    ax.text(8.8, 5.4, "optional", fontsize=8, color="gray", style="italic")
 
 
 def panel_c(ax):
@@ -145,8 +149,8 @@ def panel_c(ax):
     draw_box(ax, (0.5, 4.5), 1.6, 0.8, "G-protein feat\n(d_Gprot)", COLORS["gprot"], fontsize=8)
 
     # Projection layers
-    draw_box(ax, (2.8, 6.5), 1.4, 0.8, "Linear +\nLayerNorm +\nGELU", "#5dade2", fontsize=7)
-    draw_box(ax, (2.8, 4.5), 1.4, 0.8, "Linear +\nLayerNorm +\nGELU", "#ec7063", fontsize=7)
+    draw_box(ax, (2.8, 6.5), 1.4, 0.8, "Linear +\nLayerNorm +\nGELU", "#5dade2", fontsize=8)
+    draw_box(ax, (2.8, 4.5), 1.4, 0.8, "Linear +\nLayerNorm +\nGELU", "#ec7063", fontsize=8)
 
     draw_arrow(ax, (2.1, 7.0), (2.8, 7.0))
     draw_arrow(ax, (2.1, 4.9), (2.8, 4.9))

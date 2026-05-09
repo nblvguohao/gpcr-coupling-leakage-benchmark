@@ -166,6 +166,25 @@ $\ge$ 0.98 &  94.1 & 100.0 & 1,550 \\
 \end{tabular}
 \end{table}
 
+\begin{table}[h!]
+\centering
+\caption{Orphan GPCR coupling predictions from cross-attention 650M model. Top candidates with probability $>$0.80 for at least one G protein family. Predictions are based on full-model inference and require experimental validation.}
+\label{tab:orphan}
+\begin{tabular}{llll}
+\toprule
+GPCR ID & G protein family & Probability & Confidence \\
+\midrule
+GPR148 & Gq   & 1.000 & 1.00 \\
+GPR139 & Gi   & 0.978 & 0.96 \\
+GPRC5B & Gs   & 0.960 & 0.92 \\
+OPN4   & Gq   & 0.840 & 0.68 \\
+FZD5   & Gi   & 0.792 & 0.58 \\
+\midrule
+\multicolumn{4}{l}{\small Confidence $= 2 \times |P(\text{coupling}) - 0.5|$. Full predictions for all orphan GPCRs} \\
+\multicolumn{4}{l}{\small across all four G protein families are available in \texttt{data/wetlab\_candidates\_650m.json}.} \\
+\end{tabular}
+\end{table}
+
 % =============================================================================
 \section{Supplementary Figures}
 
@@ -228,6 +247,6 @@ Pre-computed embeddings and model weights distributed with the tool reduce the r
 % =============================================================================
 \section{Data Availability Statement}
 
-The full dataset of 1,647 (GPCR, G protein family) pairs with coupling labels is provided in \texttt{paired\_dataset/pairing\_matrix\_raw.csv}. Pre-computed ESM-2 embeddings (8M and 650M) are available in NumPy format in \texttt{paired\_dataset/}. Cross-validation fold assignments and CD-HIT cluster memberships are provided in \texttt{paired\_dataset/cv\_folds.json} and \texttt{paired\_dataset/sequence\_clusters.json}. All data is archived on Zenodo with DOI 10.5281/zenodo.XXXXXXX.
+The full dataset of 1,647 (GPCR, G protein family) pairs with coupling labels is provided in \texttt{data/pairing\_matrix\_raw.csv}. Pre-computed ESM-2 embeddings (8M and 650M) are available in \texttt{data/}. Cross-validation fold assignments and CD-HIT cluster memberships are provided in \texttt{data/sequence\_clusters.json}. All data is available at \url{https://github.com/nblvguohao/gpcr-coupling-leakage-benchmark}.
 
 \end{document}
