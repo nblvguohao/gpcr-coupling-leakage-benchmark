@@ -33,7 +33,7 @@ Small metadata files are included in `data/`:
 - `gpcrdb_coupling_long.csv` - Raw GPCRdb coupling annotations
 - `g_protein_esm_features.json` - Pre-computed G-protein ESM-2 features (320-d)
 
-> **Note**: GPCR ESM-2 features are ~1.5GB and not included. Generate them with Step 1 below, or download from [releases](https://github.com/nblvguohao/topology-aware-gpcr-coupling/releases).
+> **Note**: GPCR ESM-2 features are ~1.5GB and not included. Generate them with Step 1 below, or download from [releases](https://github.com/nblvguohao/gpcr-coupling-leakage-benchmark/releases).
 
 ### Reproduction Steps
 
@@ -171,4 +171,4 @@ This code is provided for academic research purposes.
 ## Contact
 
 - Corresponding authors: wqy@ahau.edu.cn; glc@ahau.edu.cn
-- Issues: https://github.com/nblvguohao/topology-aware-gpcr-coupling/issues
+- Issues: https://github.com/nblvguohao/gpcr-coupling-leakage-benchmark/issues

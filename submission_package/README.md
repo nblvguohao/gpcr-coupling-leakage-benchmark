@@ -148,7 +148,7 @@ If you use this code or dataset, please cite the final published article (DOI to
 
 For questions about this submission package:
 - Corresponding authors: wqy@ahau.edu.cn; glc@ahau.edu.cn
-- Code repository: https://github.com/nblvguohao/topology-aware-gpcr-coupling
+- Code repository: https://github.com/nblvguohao/gpcr-coupling-leakage-benchmark
 
 ---
 

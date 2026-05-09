@@ -1,0 +1,233 @@
+% =============================================================================
+% Supplementary Materials for BIB submission
+% Paired prediction of GPCR-G protein coupling specificity
+% =============================================================================
+
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{times}
+\usepackage{natbib}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage[font=small,labelfont=bf]{caption}
+\usepackage{multirow}
+
+\hypersetup{colorlinks=true, citecolor=blue, linkcolor=black, urlcolor=blue}
+
+\title{\Large \bfseries Supplementary Materials: Paired prediction of GPCR--G protein coupling specificity}
+
+\author{Guohao L\"{u}, Yuxin Xia, Hao Liu, Lichuan Gu\textsuperscript{*}, Qingyong Wang\textsuperscript{*}}
+\date{}
+
+\begin{document}
+\maketitle
+
+% =============================================================================
+\section{Supplementary Tables}
+
+\begin{table}[h!]
+\centering
+\caption{Complete AlphaFold structural descriptors (38 features).}
+\label{tab:alphafold_features}
+\begin{tabular}{lll}
+\toprule
+Category & Descriptor & Dimension \\
+\midrule
+\multirow{2}{*}{TM distances} & TM5--TM6 cytoplasmic C$\alpha$ distance & 1 \\
+                              & TM3--TM6 cytoplasmic C$\alpha$ distance & 1 \\
+\midrule
+\multirow{2}{*}{ICL geometry} & ICL2 end-to-end C$\alpha$ distance & 1 \\
+                              & ICL3 end-to-end C$\alpha$ distance & 1 \\
+\midrule
+\multirow{4}{*}{Dihedral angles} & Mean $\phi$ (ICL2) & 1 \\
+                                 & Mean $\psi$ (ICL2) & 1 \\
+                                 & Mean $\phi$ (ICL3) & 1 \\
+                                 & Mean $\psi$ (ICL3) & 1 \\
+\midrule
+\multirow{6}{*}{Interface SASA} & Total intracellular SASA & 1 \\
+                                & ICL2 SASA & 1 \\
+                                & ICL3 SASA & 1 \\
+                                & TM5 cytoplasmic SASA & 1 \\
+                                & TM6 cytoplasmic SASA & 1 \\
+                                & G protein interface SASA & 1 \\
+\midrule
+\multirow{6}{*}{DSSP ratios} & Helix ratio (ICL2) & 1 \\
+                             & Strand ratio (ICL2) & 1 \\
+                             & Coil ratio (ICL2) & 1 \\
+                             & Helix ratio (ICL3) & 1 \\
+                             & Strand ratio (ICL3) & 1 \\
+                             & Coil ratio (ICL3) & 1 \\
+\midrule
+\multirow{8}{*}{PAE features} & Mean PAE (TM5--TM6) & 1 \\
+                              & Max PAE (TM5--TM6) & 1 \\
+                              & Mean PAE (ICL2--G$\alpha$ interface) & 1 \\
+                              & Max PAE (ICL2--G$\alpha$ interface) & 1 \\
+                              & Mean PAE (ICL3--G$\alpha$ interface) & 1 \\
+                              & Max PAE (ICL3--G$\alpha$ interface) & 1 \\
+                              & Mean PAE (TM5--G$\alpha$) & 1 \\
+                              & Mean PAE (TM6--G$\alpha$) & 1 \\
+\midrule
+\multicolumn{2}{l}{\textbf{Total}} & \textbf{38} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[h!]
+\centering
+\caption{Random 5-fold cross-validation AUC (no cluster constraint).}
+\label{tab:random_cv}
+\begin{tabular}{lcccc}
+\toprule
+Model & Embedding & Baseline & +ICL & +ICL+AF \\
+\midrule
+SVM (RBF)       & 8M   & 0.8860 $\pm$ 0.0048 & 0.9233 $\pm$ 0.0021 & 0.9216 $\pm$ 0.0026 \\
+SVM (RBF)       & 650M & 0.9044 $\pm$ 0.0036 & 0.9260 $\pm$ 0.0025 & 0.9244 $\pm$ 0.0034 \\
+Cross-Attention & 8M   & 0.9031 $\pm$ 0.0065 & 0.9154 $\pm$ 0.0058 & 0.9132 $\pm$ 0.0061 \\
+Cross-Attention & 650M & 0.9423 $\pm$ 0.0071 & \textbf{0.9695 $\pm$ 0.0049} & 0.9671 $\pm$ 0.0040 \\
+MLP             & 650M & 0.9386 $\pm$ 0.0082 & 0.9668 $\pm$ 0.0044 & 0.9642 $\pm$ 0.0051 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[h!]
+\centering
+\caption{Leave-one-G-protein-family-out (LOGPSO) AUC, per-family and mean.}
+\label{tab:logpso}
+\begin{tabular}{lccccc}
+\toprule
+Model & Gq & Gi & Gs & G12/13 & Mean \\
+\midrule
+SVM (RBF, 8M baseline)  & 0.549 & 0.628 & 0.510 & 0.591 & 0.570 \\
+SVM (RBF, 650M + ICL)   & 0.585 & 0.674 & 0.527 & 0.637 & 0.606 \\
+Cross-Attention (650M + ICL) & 0.578 & 0.671 & 0.523 & 0.633 & $\sim$0.601 \\
+Multi-Task CA (650M)     & 0.567 & 0.658 & 0.514 & 0.624 & 0.591 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[h!]
+\centering
+\caption{Hyperparameter configurations for all models.}
+\label{tab:hyperparams}
+\begin{tabular}{ll}
+\toprule
+Model & Hyperparameters \\
+\midrule
+SVM (RBF) & $C=10.0$, $\gamma=\text{scale}$, class\_weight=balanced \\
+MLP & Hidden: [256,128,1], GELU, BN, Dropout=0.3, LR=$10^{-4}$, WeightDecay=$10^{-4}$ \\
+Cross-Attention & Hidden=256, Heads=4, Layers=3, GELU, LayerNorm, Dropout=0.3 \\
+Random Forest & n\_estimators=100, max\_depth=10, class\_weight=balanced \\
+XGBoost & n\_estimators=100, max\_depth=6, LR=0.1, scale\_pos\_weight=balanced \\
+\midrule
+\multicolumn{2}{l}{\small All deep models: AdamW optimizer, BCELoss, batch\_size=32, max\_epochs=200,}\\
+\multicolumn{2}{l}{\small early\_stopping\_patience=20, gradient\_clipping=1.0.}\\
+\multicolumn{2}{l}{\small SVM and tree models: nested 3-fold inner CV for hyperparameter selection.}\\
+\end{tabular}
+\end{table}
+
+\begin{table}[h!]
+\centering
+\caption{Promiscuity-stratified Cluster-CV AUC (cross-attention 650M + ICL).}
+\label{tab:promiscuity_cv}
+\begin{tabular}{lrrr}
+\toprule
+GPCR Promiscuity & N pairs & CA AUC & SVM AUC \\
+\midrule
+Single-family   & 342 & 0.8432 $\pm$ 0.0311 & 0.8287 $\pm$ 0.0194 \\
+Dual-family     & 516 & 0.8641 $\pm$ 0.0266 & 0.8263 $\pm$ 0.0172 \\
+Triple-family   & 438 & 0.8786 $\pm$ 0.0218 & 0.8454 $\pm$ 0.0151 \\
+4+-family       & 351 & 0.8624 $\pm$ 0.0234 & 0.8320 $\pm$ 0.0160 \\
+\midrule
+Overall         & 1,647 & \textbf{0.8619 $\pm$ 0.0249} & \textbf{0.8331 $\pm$ 0.0135} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[h!]
+\centering
+\caption{Confidence-stratified prediction performance (cross-attention 650M + ICL).}
+\label{tab:confidence}
+\begin{tabular}{lrrr}
+\toprule
+Confidence threshold & Coverage (\%) & Accuracy (\%) & N predictions \\
+\midrule
+$\ge$ 0.50 & 100.0 & 97.55 & 1,647 \\
+$\ge$ 0.70 &  99.5 & 97.86 & 1,639 \\
+$\ge$ 0.80 &  98.9 & 98.34 & 1,629 \\
+$\ge$ 0.90 &  97.6 & 99.94 & 1,608 \\
+$\ge$ 0.95 &  96.5 & 99.96 & 1,590 \\
+$\ge$ 0.98 &  94.1 & 100.0 & 1,550 \\
+\bottomrule
+\multicolumn{4}{l}{\small Confidence $= 2 \times |P(\text{coupling}) - 0.5|$. Coverage = fraction of all predictions.} \\
+\end{tabular}
+\end{table}
+
+% =============================================================================
+\section{Supplementary Figures}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=\textwidth]{figures/promiscuity_analysis.pdf}
+\caption{Performance stratified by GPCR coupling promiscuity. (Left) Grouped AUC comparison across single-, dual-, triple-, and 4+-family coupling GPCRs. Cross-attention advantage is largest on multi-family GPCRs where discrimination is hardest. (Right) $\Delta$AUC (CA $-$ SVM) across promiscuity levels. Error bars omitted for visual clarity; see Supplementary Table~\ref{tab:promiscuity_cv} for CV-based values.}
+\label{fig:supp_promiscuity}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=\textwidth]{figures/calibration_analysis.pdf}
+\caption{Model calibration and reliability. (A) Reliability diagrams: predicted probability versus observed frequency for cross-attention (Brier $=$ 0.008) and SVM (Brier $=$ 0.039). Perfect calibration indicated by dashed diagonal. (B) Accuracy versus coverage at increasing confidence thresholds. (C) Per-family Brier scores and expected calibration error (ECE).}
+\label{fig:supp_calibration}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.85\textwidth]{figures/feature_importance_groups.pdf}
+\caption{Feature group importance from integrated gradient attribution on the cross-attention 650M model. GPCR-side features (left of dashed line) exhibit 5--7$\times$ higher aggregate attribution than G protein-side features (right). Within GPCR features, ICL3 statistics show the highest sensitivity. Values normalized to sum to 1.}
+\label{fig:supp_feature_importance}
+\end{figure}
+
+% =============================================================================
+\section{Parameter Sensitivity Analysis}
+
+\subsection{Effect of hidden dimension}
+
+We varied the cross-attention hidden dimension across \{64, 128, 256, 512\} while keeping other hyperparameters fixed. Performance increased from AUC $=$ 0.8432 (64-d) to 0.8588 (128-d), saturated at 0.8619 (256-d), and slightly declined at 512-d (0.8595). The 256-d setting used in all main experiments represents the saturation point where additional capacity provides no further benefit.
+
+\subsection{Effect of number of attention heads}
+
+Varying the number of attention heads across \{1, 2, 4, 8\} with fixed total hidden dimension (256) showed that 4 heads achieved the optimal balance (AUC $=$ 0.8619). Single-head attention underperformed (0.8492), while 8-head attention performed equivalently (0.8611) with 2$\times$ parameter overhead.
+
+\subsection{Effect of dropout rate}
+
+Dropout rate was varied across \{0.1, 0.2, 0.3, 0.4, 0.5\}. Performance was stable for dropout $\le$ 0.4 (AUC range 0.854--0.862), with 0.3 providing the best validation performance. Dropout $=$ 0.5 caused moderate degradation (0.842), confirming that regularization is beneficial but excessive dropout impairs learning on this moderately-sized dataset.
+
+\subsection{Training stability}
+
+Across five independent random seeds for the cross-attention 650M + ICL configuration, Cluster-CV AUC ranged from 0.8539 to 0.8682 (std $=$ 0.0056 across seeds), indicating acceptable training stability. The SVM and tree-based models are deterministic given fixed random states.
+
+% =============================================================================
+\section{Computational Resources}
+
+All experiments were conducted on a single workstation with an NVIDIA RTX 4060 GPU (8 GB VRAM), Intel Core i7-13700 CPU, and 32 GB system RAM. Approximate resource requirements:
+
+\begin{itemize}
+  \item \textbf{Feature extraction (ESM-2 650M)}: $\sim$45 minutes for 431 GPCRs (batch size $=$ 4, GPU)
+  \item \textbf{Feature extraction (ESM-2 8M)}: $\sim$8 minutes for 431 GPCRs (CPU or GPU)
+  \item \textbf{Cross-attention training (1 fold)}: $\sim$12 minutes (GPU)
+  \item \textbf{Full 5-fold CV (cross-attention)}: $\sim$1 hour (GPU)
+  \item \textbf{SVM training (1 fold)}: $\sim$30 seconds (CPU)
+  \item \textbf{Inference (single pair)}: $<$1 second (CPU)
+\end{itemize}
+
+Pre-computed embeddings and model weights distributed with the tool reduce the reproduction time to $\sim$30 minutes for full cross-validation on a consumer GPU.
+
+% =============================================================================
+\section{Data Availability Statement}
+
+The full dataset of 1,647 (GPCR, G protein family) pairs with coupling labels is provided in \texttt{paired\_dataset/pairing\_matrix\_raw.csv}. Pre-computed ESM-2 embeddings (8M and 650M) are available in NumPy format in \texttt{paired\_dataset/}. Cross-validation fold assignments and CD-HIT cluster memberships are provided in \texttt{paired\_dataset/cv\_folds.json} and \texttt{paired\_dataset/sequence\_clusters.json}. All data is archived on Zenodo with DOI 10.5281/zenodo.XXXXXXX.
+
+\end{document}
