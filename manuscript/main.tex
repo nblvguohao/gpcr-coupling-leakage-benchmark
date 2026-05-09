@@ -243,13 +243,6 @@ Multi-Task CA   & 650M & ---                & 0.8020 $\pm$ 0.0194$^\dagger$ & --
 \end{tabular}
 \end{table}
 
-\begin{figure}[t]
-\centering
-\includegraphics[width=0.88\textwidth]{../figures/figure1_auc_comparison.pdf}
-\caption{Cluster-aware CV AUC across all model configurations. Cross-attention with 650M embeddings and ICL features achieves the highest AUC (0.8619). The performance advantage of cross-attention over SVM widens from $\Delta$AUC $= +0.006$ at 8M to $+0.029$ at 650M, indicating better utilization of high-dimensional representations.}
-\label{fig:auc}
-\end{figure}
-
 \subsection{Promiscuity-stratified analysis}
 
 To understand whether the cross-attention advantage depends on GPCR coupling promiscuity, we stratified predictions by the number of G protein families each GPCR couples to (Figure~\ref{fig:promiscuity}). Cross-attention outperforms SVM most substantially on multi-family GPCRs: for dual-family GPCRs, CA AUC $=$ 0.864 versus SVM AUC $=$ 0.826 ($\Delta$AUC $= +0.038$), while for single-family GPCRs the gap narrows ($\Delta$AUC $= +0.015$). The cross-attention mechanism thus provides greatest value precisely where the biological problem is most difficult---when a GPCR couples to multiple families and requires discrimination rather than simple binary classification.
@@ -293,13 +286,6 @@ The multi-task cross-attention variant, which removes G protein family identity 
 Beyond discriminative performance, practical deployment requires well-calibrated probability estimates for candidate prioritization. The cross-attention model achieved a Brier score of 0.0084 (perfect $=$ 0, random $=$ 0.25 for balanced data), substantially better than SVM (0.0394). The expected calibration error (ECE, 5 bins) was 0.037 for cross-attention versus 0.098 for SVM, confirming that cross-attention produces more reliable probability estimates (Figure~\ref{fig:calibration}).
 
 We further stratified predictions by confidence, defined as $2 \times |P(\text{coupling}) - 0.5|$. At confidence threshold $\ge$ 0.9, covering 97.6\% of all predictions, the cross-attention model achieved 99.94\% accuracy. At the most stringent threshold ($\ge$ 0.98, 94.1\% coverage), accuracy reached 99.97\%. This means the model can identify a high-confidence subset comprising $>$94\% of predictions with near-perfect accuracy, directly useful for experimental candidate selection.
-
-\begin{figure}[t]
-\centering
-\includegraphics[width=\textwidth]{../figures/figure3_icl_alignment.pdf}
-\caption{ICL dimension alignment effect. Heterogeneous feature dimensions systematically degrade performance, while dimension-matched features enable cross-attention to fully utilize high-dimensional embeddings.}
-\label{fig:icl}
-\end{figure}
 
 \subsection{LOGPSO remains an open community challenge}
 
