@@ -15,9 +15,6 @@
 \usepackage{hyperref}
 \usepackage{lineno}
 \usepackage{float}
-\usepackage{xcolor}
-\usepackage{tcolorbox}
-\usepackage{enumitem}
 \usepackage[font=small,labelfont=bf]{caption}
 
 \hypersetup{colorlinks=true, citecolor=blue, linkcolor=black, urlcolor=blue}
@@ -42,28 +39,6 @@
 \linenumbers
 
 \maketitle
-
-% =============================================================================
-% Key Points (BIB requirement)
-% =============================================================================
-\begin{tcolorbox}[
-  title=\textbf{Key Points},
-  colback=blue!3!white,
-  colframe=blue!30!white,
-  coltitle=black,
-  fonttitle=\bfseries,
-  sharp corners
-]
-\begin{itemize}[leftmargin=*,itemsep=4pt]
-  \item GPCR--G protein coupling is reformulated as a pairwise binary classification over 1,647 experimentally validated (GPCR, G protein family) pairs, incorporating G protein identity as explicit input.
-  \item Cross-attention with ESM-2 650M embeddings and topology-aware intracellular loop features achieves AUC of 0.862 under cluster-aware cross-validation, with a Brier score of 0.008 indicating well-calibrated probabilities.
-  \item A critical methodological finding: intracellular loop local features must match the global embedding dimension---mixing heterogeneous dimensions degrades performance across all architectures.
-  \item AlphaFold structural descriptors provide no incremental gain beyond ESM-2 650M embeddings, demonstrating that high-capacity protein language models implicitly encode sufficient structural information.
-  \item A companion software tool (\texttt{gpcr-coupling}) with pre-trained models and a tutorial workflow is provided for practical deployment.
-\end{itemize}
-\end{tcolorbox}
-
-\vspace{6pt}
 
 % =============================================================================
 % Abstract

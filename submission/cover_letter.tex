@@ -27,6 +27,15 @@ We are pleased to submit our manuscript entitled:
 
 for consideration as an \textbf{Original Research Article} in \textit{Briefings in Bioinformatics}.
 
+\textbf{Highlights}
+\begin{itemize}
+  \item Reformulates GPCR--G protein coupling as a paired binary classification over 1,647 (GPCR, G protein family) pairs---incorporating G protein identity as explicit input rather than a class label.
+  \item Cross-attention + ESM-2 650M embeddings + topology-aware ICL features achieves AUC 0.862 (cluster-aware CV), with Brier score 0.008 indicating well-calibrated, deployment-ready probabilities.
+  \item Critical dimension-alignment finding: ICL local features must match global embedding dimension---mixing dimensions degrades performance across all architectures.
+  \item AlphaFold structural descriptors provide zero incremental gain beyond ESM-2 650M, demonstrating that large protein language models implicitly encode structural information.
+  \item Open-source tool \texttt{gpcr-coupling} with pre-trained models and tutorial; all code, data, and results at \url{https://github.com/nblvguohao/gpcr-coupling-leakage-benchmark}.
+\end{itemize}
+
 \textbf{Summary}
 
 G protein-coupled receptors (GPCRs) mediate cellular responses by coupling to heterotrimeric G proteins, yet computational prediction of coupling specificity---which determines downstream signaling---remains an open challenge with direct implications for orphan receptor deorphanization and rational drug design. Existing approaches predominantly treat this as single-protein classification, neglecting the paired nature of the interaction.
