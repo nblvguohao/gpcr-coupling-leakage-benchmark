@@ -10,7 +10,7 @@ from pathlib import Path
 import esm
 
 BASE = Path(__file__).parent
-OUTPUT_FILE = BASE / "paired_dataset" / "g_protein_esm_features_650m.json"
+OUTPUT_FILE = BASE.parent / "data" / "g_protein_esm_features_650m.json"
 
 UNIPROT_IDS = {
     "GNAQ": "P50148",

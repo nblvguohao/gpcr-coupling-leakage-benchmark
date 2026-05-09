@@ -21,14 +21,14 @@ import warnings
 warnings.filterwarnings("ignore")
 
 BASE = Path(__file__).parent
-DATA_DIR = BASE / "paired_dataset"
+DATA_DIR = Path(__file__).parent.parent / "data"
 GPCR_MEAN_FILE = BASE / "server_sync" / "extended_data" / "features" / "esm_features_650m_meanpool.json"
 GPCR_SGSP_FILE = DATA_DIR / "sgsp_embeddings_650m.json"
 GPROT_FILE = DATA_DIR / "g_protein_esm_features.json"
 ICL_FILE = DATA_DIR / "icl_features_650m.json"
 PAIRING_FILE = DATA_DIR / "pairing_matrix_raw.csv"
 CLUSTERS_FILE = DATA_DIR / "sequence_clusters.json"
-OUTPUT_FILE = DATA_DIR / "final_ablation_results.json"
+OUTPUT_FILE = DATA_DIR / "ablation_results.json"
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 EMBED_DIM = 64
 

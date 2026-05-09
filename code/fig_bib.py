@@ -34,8 +34,8 @@ plt.rcParams.update({
 })
 
 BASE = Path(__file__).parent
-DATA_DIR = BASE / "paired_dataset"
-FIG_DIR = BASE / "figures"
+DATA_DIR = Path(__file__).parent.parent / "data"
+FIG_DIR = BASE.parent / "figures"
 FIG_DIR.mkdir(exist_ok=True)
 
 # Color palette (colorblind-friendly)
@@ -62,8 +62,8 @@ def main():
 
     # Load data
     pairing = pd.read_csv(DATA_DIR / "pairing_matrix_raw.csv")
-    svm_preds = load_json(DATA_DIR / "svm_predictions_all_pairs.json")
-    ca_preds = load_json(DATA_DIR / "crossattn_650m_predictions_all_pairs.json")
+    svm_preds = load_json(DATA_DIR / "svm_predictions.json")
+    ca_preds = load_json(DATA_DIR / "ca_predictions.json")
 
     # Determine promiscuity
     pos_pairs = pairing[pairing.coupling == 1]

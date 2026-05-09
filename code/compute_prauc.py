@@ -12,7 +12,7 @@ import warnings
 warnings.filterwarnings("ignore")
 
 BASE = Path(__file__).parent
-DATA_DIR = BASE / "paired_dataset"
+DATA_DIR = Path(__file__).parent.parent / "data"
 OUTPUT_FILE = DATA_DIR / "prauc_results.json"
 
 # Load existing results
@@ -63,7 +63,7 @@ def main():
 
     # Reference PR-AUC values from existing experiments
     # Load the gprot experiment for actual PR-AUCs
-    with open(DATA_DIR / "gprot_650m_experiment_results.json") as f:
+    with open(DATA_DIR / "gprotein_experiment.json") as f:
         exp = json.load(f)
 
     print("\n  PR-AUC values from Gprot 650M experiment:")

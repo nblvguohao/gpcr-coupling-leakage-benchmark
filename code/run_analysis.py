@@ -14,7 +14,7 @@ from sklearn.metrics import roc_auc_score, brier_score_loss
 from sklearn.calibration import calibration_curve
 
 BASE = Path(__file__).parent
-DATA_DIR = BASE / "paired_dataset"
+DATA_DIR = Path(__file__).parent.parent / "data"
 
 def load_json(path):
     with open(path) as f:
@@ -27,12 +27,12 @@ def main():
 
     # Load data
     pairing = pd.read_csv(DATA_DIR / "pairing_matrix_raw.csv")
-    svm_preds = load_json(DATA_DIR / "svm_predictions_all_pairs.json")
-    ca_preds = load_json(DATA_DIR / "crossattn_650m_predictions_all_pairs.json")
+    svm_preds = load_json(DATA_DIR / "svm_predictions.json")
+    ca_preds = load_json(DATA_DIR / "ca_predictions.json")
 
     # Load CV results for per-family comparison
-    exp_results = load_json(DATA_DIR / "gprot_650m_experiment_results.json")
-    enhanced_results = load_json(DATA_DIR / "paired_cv_enhanced_v2_650m_results.json")
+    exp_results = load_json(DATA_DIR / "gprotein_experiment.json")
+    enhanced_results = load_json(DATA_DIR / "cv_results.json")
     multitask = load_json(DATA_DIR / "multitask_results.json")
 
     # ==================================================================

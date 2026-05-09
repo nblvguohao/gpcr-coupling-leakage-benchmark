@@ -25,7 +25,7 @@ from typing import List, Dict, Set
 from collections import defaultdict
 
 BASE = Path(__file__).parent
-OUTPUT_DIR = BASE / "paired_dataset"
+OUTPUT_DIR = BASE.parent / "data"
 OUTPUT_DIR.mkdir(exist_ok=True)
 
 GITHUB_RAW = "https://raw.githubusercontent.com/protwis/gpcrdb_data/master/g_protein_data"

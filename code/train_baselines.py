@@ -20,14 +20,14 @@ import warnings
 warnings.filterwarnings("ignore")
 
 BASE = Path(__file__).parent
-DATA_DIR = BASE / "paired_dataset"
+DATA_DIR = Path(__file__).parent.parent / "data"
 GPCR_FEATURES_FILE = BASE / "server_sync" / "extended_data" / "features" / "esm_features_650m_meanpool.json"
 G_PROTEIN_FEATURES_FILE = DATA_DIR / "g_protein_esm_features.json"
 ICL_FEATURES_FILE = DATA_DIR / "icl_features_650m.json"
 ALPHA_FEATURES_FILE = DATA_DIR / "alphafold_icl_features.json"
 PAIRING_MATRIX_FILE = DATA_DIR / "pairing_matrix_raw.csv"
 CLUSTERS_FILE = DATA_DIR / "sequence_clusters.json"
-OUTPUT_FILE = DATA_DIR / "paired_baselines_650m_results.json"
+OUTPUT_FILE = DATA_DIR / "baseline_results.json"
 
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 

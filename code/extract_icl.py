@@ -16,8 +16,8 @@ from typing import Dict, List, Tuple
 BASE = Path(__file__).parent
 SEQUENCES_FILE = BASE / "merged_dataset" / "extended_sequences.json"
 ESM_FEATURES_FILE = BASE / "server_sync" / "extended_data" / "features" / "esm_features_650m_paired.json"
-TOPOLOGY_FILE = BASE / "paired_dataset" / "uniprot_topology.json"
-OUTPUT_FILE = BASE / "paired_dataset" / "icl_features_650m.json"
+TOPOLOGY_FILE = BASE.parent / "data" / "uniprot_topology.json"
+OUTPUT_FILE = BASE.parent / "data" / "icl_features_650m.json"
 
 KD_SCALE = {
     "A": 1.8, "C": 2.5, "D": -3.5, "E": -3.5, "F": 2.8,

@@ -16,7 +16,7 @@ from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_sc
 from torch.utils.data import Dataset, DataLoader
 
 BASE = Path(__file__).parent
-DATA_DIR = BASE / "paired_dataset"
+DATA_DIR = Path(__file__).parent.parent / "data"
 GPCR_FEATURES_FILE = BASE / "server_sync" / "extended_data" / "features" / "esm_features_650m_meanpool.json"
 GPROT_ORIG_FILE = DATA_DIR / "g_protein_esm_features.json"          # 320-d (original)
 GPROT_650M_FILE = DATA_DIR / "g_protein_esm_features_650m.json"      # 1280-d (new)
@@ -24,7 +24,7 @@ ICL_FEATURES_FILE = DATA_DIR / "icl_features_650m.json"
 ALPHA_FEATURES_FILE = DATA_DIR / "alphafold_icl_features.json"
 PAIRING_MATRIX_FILE = DATA_DIR / "pairing_matrix_raw.csv"
 CLUSTERS_FILE = DATA_DIR / "sequence_clusters.json"
-OUTPUT_FILE = DATA_DIR / "gprot_650m_experiment_results.json"
+OUTPUT_FILE = DATA_DIR / "gprotein_experiment.json"
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 # ---------------------------------------------------------------------------

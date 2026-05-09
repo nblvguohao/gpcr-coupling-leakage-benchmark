@@ -28,7 +28,7 @@ from typing import Dict, List, Set, Tuple, Optional
 BASE = Path(__file__).parent
 LABELS_FILE = BASE / "merged_dataset" / "extended_labels.json"
 SEQUENCES_FILE = BASE / "merged_dataset" / "extended_sequences.json"
-OUTPUT_DIR = BASE / "paired_dataset"
+OUTPUT_DIR = BASE.parent / "data"
 OUTPUT_DIR.mkdir(exist_ok=True)
 
 LONG_CSV = OUTPUT_DIR / "gpcrdb_coupling_long.csv"

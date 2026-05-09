@@ -10,8 +10,8 @@ import seaborn as sns
 from pathlib import Path
 
 BASE = Path(__file__).parent
-DATA_DIR = BASE / "paired_dataset"
-FIG_DIR = BASE / "figures"
+DATA_DIR = Path(__file__).parent.parent / "data"
+FIG_DIR = BASE.parent / "figures"
 FIG_DIR.mkdir(exist_ok=True)
 
 sns.set_style("whitegrid")
@@ -43,7 +43,7 @@ def dl_auc(d, key):
 def figure1_auc_comparison():
     """Figure 1: Cluster-aware CV AUC comparison across all configurations."""
     svm_8m = load_json(DATA_DIR / "paired_cv_enhanced_results.json")
-    svm_650m = load_json(DATA_DIR / "paired_cv_enhanced_v2_650m_results.json")
+    svm_650m = load_json(DATA_DIR / "cv_results.json")
     dl_8m = load_json(DATA_DIR / "paired_cross_attention_results.json")
     dl_650m = load_json(DATA_DIR / "paired_cross_attention_650m_results.json")
 
@@ -86,7 +86,7 @@ def figure1_auc_comparison():
 def figure2_embedding_scale_effect():
     """Figure 2: Effect of embedding scale (8M vs 650M) on SVM and cross-attention."""
     svm_8m = load_json(DATA_DIR / "paired_cv_enhanced_results.json")
-    svm_650m = load_json(DATA_DIR / "paired_cv_enhanced_v2_650m_results.json")
+    svm_650m = load_json(DATA_DIR / "cv_results.json")
     dl_8m = load_json(DATA_DIR / "paired_cross_attention_results.json")
     dl_650m = load_json(DATA_DIR / "paired_cross_attention_650m_results.json")
 

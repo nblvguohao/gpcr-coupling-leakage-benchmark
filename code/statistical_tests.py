@@ -13,8 +13,8 @@ from pathlib import Path
 from scipy import stats
 
 BASE = Path(__file__).parent
-DATA_DIR = BASE / "paired_dataset"
-FIG_DIR = BASE / "figures"
+DATA_DIR = Path(__file__).parent.parent / "data"
+FIG_DIR = BASE.parent / "figures"
 FIG_DIR.mkdir(exist_ok=True)
 
 sns.set_style("whitegrid")
@@ -63,10 +63,10 @@ def main():
     print("=" * 70)
 
     svm_8m = load_json(DATA_DIR / "paired_cv_enhanced_results.json")
-    svm_650m = load_json(DATA_DIR / "paired_cv_enhanced_v2_650m_results.json")
+    svm_650m = load_json(DATA_DIR / "cv_results.json")
     dl_8m = load_json(DATA_DIR / "paired_cross_attention_results.json")
     dl_650m = load_json(DATA_DIR / "paired_cross_attention_650m_results.json")
-    baselines = load_json(DATA_DIR / "paired_baselines_650m_results.json") if (DATA_DIR / "paired_baselines_650m_results.json").exists() else {}
+    baselines = load_json(DATA_DIR / "baseline_results.json") if (DATA_DIR / "baseline_results.json").exists() else {}
 
     def get_fold_aucs(primary, fallback):
         return primary if primary is not None else fallback

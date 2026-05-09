@@ -15,8 +15,8 @@ import seaborn as sns
 from pathlib import Path
 
 BASE = Path(__file__).parent
-DATA_DIR = BASE / "paired_dataset"
-FIG_DIR = BASE / "figures"
+DATA_DIR = Path(__file__).parent.parent / "data"
+FIG_DIR = BASE.parent / "figures"
 FIG_DIR.mkdir(exist_ok=True)
 
 sns.set_style("whitegrid")
@@ -130,7 +130,7 @@ def supp_figure_1_fold_bars():
     dl_650m = json.load(open(DATA_DIR / "paired_cross_attention_650m_results.json"))
     dl_8m = json.load(open(DATA_DIR / "paired_cross_attention_results.json"))
     svm_8m = json.load(open(DATA_DIR / "paired_cv_enhanced_results.json"))
-    baselines = json.load(open(DATA_DIR / "paired_baselines_650m_results.json"))
+    baselines = json.load(open(DATA_DIR / "baseline_results.json"))
 
     # Extract fold_aucs safely
     def get_dl_folds(d, key):
@@ -176,7 +176,7 @@ def supp_figure_1_fold_bars():
 
 def supp_figure_2_baseline_comparison():
     """Supplementary Figure 2: Baseline model comparison box plot."""
-    baselines = json.load(open(DATA_DIR / "paired_baselines_650m_results.json"))
+    baselines = json.load(open(DATA_DIR / "baseline_results.json"))
     dl_650m = json.load(open(DATA_DIR / "paired_cross_attention_650m_results.json"))
 
     records = []

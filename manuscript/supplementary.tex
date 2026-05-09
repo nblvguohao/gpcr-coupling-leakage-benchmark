@@ -171,21 +171,21 @@ $\ge$ 0.98 &  94.1 & 100.0 & 1,550 \\
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=\textwidth]{figures/promiscuity_analysis.pdf}
+\includegraphics[width=\textwidth]{../figures/promiscuity_analysis.pdf}
 \caption{Performance stratified by GPCR coupling promiscuity. (Left) Grouped AUC comparison across single-, dual-, triple-, and 4+-family coupling GPCRs. Cross-attention advantage is largest on multi-family GPCRs where discrimination is hardest. (Right) $\Delta$AUC (CA $-$ SVM) across promiscuity levels. Error bars omitted for visual clarity; see Supplementary Table~\ref{tab:promiscuity_cv} for CV-based values.}
 \label{fig:supp_promiscuity}
 \end{figure}
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=\textwidth]{figures/calibration_analysis.pdf}
+\includegraphics[width=\textwidth]{../figures/calibration_analysis.pdf}
 \caption{Model calibration and reliability. (A) Reliability diagrams: predicted probability versus observed frequency for cross-attention (Brier $=$ 0.008) and SVM (Brier $=$ 0.039). Perfect calibration indicated by dashed diagonal. (B) Accuracy versus coverage at increasing confidence thresholds. (C) Per-family Brier scores and expected calibration error (ECE).}
 \label{fig:supp_calibration}
 \end{figure}
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=0.85\textwidth]{figures/feature_importance_groups.pdf}
+\includegraphics[width=0.85\textwidth]{../figures/feature_importance_groups.pdf}
 \caption{Feature group importance from integrated gradient attribution on the cross-attention 650M model. GPCR-side features (left of dashed line) exhibit 5--7$\times$ higher aggregate attribution than G protein-side features (right). Within GPCR features, ICL3 statistics show the highest sensitivity. Values normalized to sum to 1.}
 \label{fig:supp_feature_importance}
 \end{figure}

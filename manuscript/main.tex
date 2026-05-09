@@ -245,7 +245,7 @@ Multi-Task CA   & 650M & ---                & 0.8020 $\pm$ 0.0194$^\dagger$ & --
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=0.88\textwidth]{figures/figure1_auc_comparison.pdf}
+\includegraphics[width=0.88\textwidth]{../figures/figure1_auc_comparison.pdf}
 \caption{Cluster-aware CV AUC across all model configurations. Cross-attention with 650M embeddings and ICL features achieves the highest AUC (0.8619). The performance advantage of cross-attention over SVM widens from $\Delta$AUC $= +0.006$ at 8M to $+0.029$ at 650M, indicating better utilization of high-dimensional representations.}
 \label{fig:auc}
 \end{figure}
@@ -296,7 +296,7 @@ We further stratified predictions by confidence, defined as $2 \times |P(\text{c
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=\textwidth]{figures/figure3_icl_alignment.pdf}
+\includegraphics[width=\textwidth]{../figures/figure3_icl_alignment.pdf}
 \caption{ICL dimension alignment effect. Heterogeneous feature dimensions systematically degrade performance, while dimension-matched features enable cross-attention to fully utilize high-dimensional embeddings.}
 \label{fig:icl}
 \end{figure}
@@ -395,49 +395,49 @@ The authors declare no competing financial or non-financial interests.
 % References
 % =============================================================================
 \bibliographystyle{plainnat}
-\bibliography{bioinformatics_references}
+\bibliography{references}
 
 % =============================================================================
 % Figure legends (for compilation; actual figures in separate files)
 % =============================================================================
 \begin{figure}[p]
 \centering
-\includegraphics[width=\textwidth]{figures/figure1_schematic.pdf}
+\includegraphics[width=\textwidth]{../figures/figure1_schematic.pdf}
 \caption{Study overview. (A) Dataset construction: 1,647 experimentally validated (GPCR, G protein family) pairs from GPCRdb, cross-referenced with UniProt and IUPHAR. (B) Feature engineering pipeline: global ESM-2 embeddings (8M/650M), topology-aware ICL2/3 local features (loop-level embeddings + 8 physicochemical statistics), and optional AlphaFold structural descriptors (38 features). (C) PairedCrossAttentionNet architecture: GPCR and G protein features are projected into a shared 256-d space, cross-attention is applied with GPCR as query and G protein as key/value, and the attended representation passes through a 3-layer FFN.}
 \label{fig:schematic}
 \end{figure}
 
 \begin{figure}[p]
 \centering
-\includegraphics[width=0.85\textwidth]{figures/figure1_auc_comparison.pdf}
+\includegraphics[width=0.85\textwidth]{../figures/figure1_auc_comparison.pdf}
 \caption{Performance comparison across model architectures and embedding scales under cluster-aware 5-fold cross-validation. Cross-attention with 650M + ICL achieves the best AUC (0.8619). The performance advantage of cross-attention over SVM widens from 8M ($\Delta$AUC $= +0.006$) to 650M ($\Delta$AUC $= +0.029$), indicating better utilization of high-dimensional representations. Error bars: $\pm$1 std across 5 folds.}
 \label{fig:auc}
 \end{figure}
 
 \begin{figure}[p]
 \centering
-\includegraphics[width=0.88\textwidth]{figures/promiscuity_analysis.pdf}
+\includegraphics[width=0.88\textwidth]{../figures/promiscuity_analysis.pdf}
 \caption{Performance stratified by GPCR coupling promiscuity. Cross-attention most substantially outperforms SVM on multi-family GPCRs (dual-family: $\Delta$AUC $= +0.038$), where the biological discrimination problem is hardest. The advantage persists across all promiscuity levels.}
 \label{fig:promiscuity}
 \end{figure}
 
 \begin{figure}[p]
 \centering
-\includegraphics[width=\textwidth]{figures/figure3_icl_alignment.pdf}
+\includegraphics[width=\textwidth]{../figures/figure3_icl_alignment.pdf}
 \caption{ICL dimension alignment effect. (A) When 320-d ICL features are concatenated with 1280-d global embeddings, performance degrades across architectures. (B) After dimension-matching (1280-d ICL extracted with 650M model), performance recovers and the cross-attention advantage is fully realized.}
 \label{fig:icl}
 \end{figure}
 
 \begin{figure}[p]
 \centering
-\includegraphics[width=\textwidth]{figures/figure4_alphafold_ablation.pdf}
+\includegraphics[width=\textwidth]{../figures/figure4_alphafold_ablation.pdf}
 \caption{AlphaFold structural features provide no incremental benefit. Across all model--embedding combinations, adding 38 AlphaFold descriptors yields $\Delta$AUC $\le$ 0.002. This demonstrates that ESM-2 650M embeddings already encode structurally relevant information sufficient for coupling prediction.}
 \label{fig:alphafold}
 \end{figure}
 
 \begin{figure}[p]
 \centering
-\includegraphics[width=\textwidth]{figures/calibration_analysis.pdf}
+\includegraphics[width=\textwidth]{../figures/calibration_analysis.pdf}
 \caption{Model calibration and reliability analysis. (A) Reliability diagrams comparing cross-attention (Brier $=$ 0.008) and SVM (Brier $=$ 0.039). (B) Confidence-stratified accuracy: at confidence $\ge$ 0.9 (97.6\% coverage), cross-attention predictions achieve 99.94\% accuracy. (C) Per-family calibration curves.}
 \label{fig:calibration}
 \end{figure}

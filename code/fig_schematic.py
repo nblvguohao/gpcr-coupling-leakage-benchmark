@@ -11,7 +11,7 @@ import numpy as np
 from pathlib import Path
 
 BASE = Path(__file__).parent
-FIG_DIR = BASE / "figures"
+FIG_DIR = BASE.parent / "figures"
 FIG_DIR.mkdir(exist_ok=True)
 
 # Color palette (consistent with other figures)

@@ -1,145 +1,92 @@
-# Topology-Aware GPCR-G Protein Coupling Prediction via ESM-2 Embeddings and Curated Transmembrane Annotations
+# Paired GPCR-G Protein Coupling Prediction
 
-**Target Journal**: *Briefings in Bioinformatics* (中科院一区, IF ~13+)
+**Target Journal**: *Briefings in Bioinformatics* (Oxford, IF ~13.4)
 
----
+## Key Results
 
-## Project Overview
+- **Best AUC**: 0.8619 ± 0.0249 (Cross-Attention + ESM-2 650M + ICL features, cluster-aware CV)
+- **Dataset**: 1,647 pairs, 431 GPCRs, 4 G protein families, 387 sequence clusters
+- **Brier score**: 0.008 (CA) vs 0.039 (SVM) — well-calibrated probabilities
+- **Key finding**: ICL local features must match global ESM embedding dimension
+- **Negative result**: AlphaFold structural descriptors provide no gain beyond ESM-2 650M
 
-Large-scale paired prediction of GPCR–G protein coupling specificity using scaled protein language models (ESM-2) and topology-aware features.
-
-**Key Results**:
-- **Best AUC**: 0.8619 ± 0.0249 (Cross-Attention + ESM-2 650M + ICL features)
-- **Dataset**: 1,639 (GPCR, G protein family) pairs, 431 GPCRs, 387 sequence clusters
-- **Novel finding**: ICL local features must match global embedding dimension
-- **Negative result**: AlphaFold structural features do not improve beyond ESM-2 + ICL
-
----
-
-## Project Structure
+## Repository Structure
 
 ```
-├── MANUSCRIPT.md / .tex / .pdf     # Manuscript source files
-├── README.md                       # This file
-├── real_references.bib             # BibTeX references
-│
-├── *.py (40 scripts)              # Core code (root level for path compatibility)
-│
-├── paired_dataset/                 # Main dataset (231MB)
-│   ├── alphafold_*                # AlphaFold structural features
-│   ├── icl_features_*             # ICL ESM embeddings
-│   ├── g_protein_esm_features_*   # G protein ESM features
-│   ├── pairing_matrix_raw.csv     # 1,639 pairs with labels
-│   ├── sequence_clusters.json     # 387 homology clusters
-│   └── cv_results/*               # Cross-validation results
-│
-├── submission_package/             # Journal submission package
-│   ├── main_text/                 # Manuscript LaTeX
-│   ├── supplementary/             # Supplementary materials
-│   ├── cover_letter/              # Cover letter
-│   └── figures/                   # Publication figures
-│
-├── reproducible_package/           # Standalone reproducible code
-│   ├── src/                       # Compact reproduction scripts
-│   ├── data/                      # Core data files
-│   └── README.md                  # Reproduction instructions
-│
-├── figures/                       # Generated figures
-├── results/                       # Experiment results
-├── dssp_data/                     # DSSP structural data
-│
-├── docs/                          # Documentation
-│   ├── plans/                     # Technical design documents
-│   ├── reports/                   # Experiment reports
-│   └── archive/                   # Old drafts and review records
-│
-├── src/                           # Organized code reference
-│   └── legacy/                    # Obsolete/superseded scripts
-│
-└── bin/                           # Binary executables (DSSP, etc.)
+├── manuscript/           # Manuscript source + compiled PDF
+│   ├── main.tex          # LaTeX source (BIB formatted)
+│   ├── main.pdf          # Compiled manuscript (21 pages)
+│   ├── references.bib    # 45 references
+│   ├── supplementary.tex # Supplementary materials
+│   └── supplementary.pdf
+├── code/                 # Core scripts (18 files)
+│   ├── cross_validation.py      # Main CV: cluster-aware + LOGPSO
+│   ├── train_cross_attention.py # Cross-attention model training
+│   ├── train_baselines.py       # SVM/MLP/RF/XGBoost baselines
+│   ├── extract_esm.py           # ESM-2 650M feature extraction
+│   ├── extract_icl.py           # ICL2/3 feature extraction
+│   ├── run_ablation.py          # Ablation experiments
+│   ├── run_gprotein.py          # G protein experiment
+│   ├── run_analysis.py          # Calibration + promiscuity analysis
+│   ├── gradient_attribution.py  # Feature importance
+│   ├── statistical_tests.py     # Significance tests
+│   ├── build_dataset.py         # Dataset construction
+│   ├── fetch_data.py            # GPCRdb data acquisition
+│   └── fig_*.py                 # Figure generation (5 scripts)
+├── data/                 # Dataset + results (21 files)
+│   ├── pairing_matrix_raw.csv   # 1,647 labeled pairs
+│   ├── sequence_clusters.json   # 387 CD-HIT clusters
+│   ├── gpcr_esm_features_650m.json     # GPCR ESM-2 650M embeddings
+│   ├── g_protein_esm_features_650m.json # G protein ESM-2 embeddings
+│   ├── icl_features_650m.json          # ICL2/3 features (1280-d)
+│   ├── cv_results.json                 # Cross-validation results
+│   ├── baseline_results.json           # Baseline model results
+│   ├── ca_predictions.json             # Cross-attention predictions
+│   └── ...
+├── figures/              # Publication figures (14 files)
+├── src/gpcr_coupling/    # Software tool (4 files)
+├── submission/           # Cover letter + README
+├── .gitignore
+└── README.md
 ```
 
----
-
-## Key Code Files by Function
-
-### Models & Training
-| Script | Description |
-|--------|-------------|
-| `train_paired_cross_attention_650m.py` | Cross-Attention + 650M ESM training |
-| `train_paired_baselines_650m.py` | MLP/RF/XGBoost baselines |
-| `train_paired_cross_attention.py` | 8M ESM version |
-| `train_gsca.py` / `train_ipl.py` / `train_ipl_v2.py` | Exploratory models |
-
-### Cross-Validation
-| Script | Description |
-|--------|-------------|
-| `paired_cross_validation_enhanced_v2_650m.py` | **Main CV** (paper results) |
-| `paired_cross_validation_enhanced.py` / `_v2.py` | Enhanced CV variants |
-| `paired_cross_validation_650m.py` | 650M CV runner |
-| `paired_cross_validation.py` | 8M CV runner |
-| `run_final_ablation.py` | Final ablation experiments |
-| `run_gprot_650m_experiment.py` | Full G protein experiment |
-
-### Feature Extraction
-| Script | Description |
-|--------|-------------|
-| `extract_650m_features.py` | ESM-2 650M features |
-| `extract_icl_features_650m.py` | ICL2/3 local features |
-| `extract_alphafold_features_paired.py` | AlphaFold structure features |
-| `extract_gprotein_650m.py` | G protein features |
-| `compute_geometric_alphafold_features.py` | Geometric descriptors |
-| `compute_pae_features.py` | PAE flexibility features |
-| `build_paired_matrix.py` | Pairing matrix construction |
-
-### Analysis & Interpretability
-| Script | Description |
-|--------|-------------|
-| `gradient_attribution_650m.py` | Gradient-based feature sensitivity |
-| `shap_attribution_paired.py` | SHAP analysis |
-| `shap_attribution_icl.py` | ICL-specific SHAP |
-| `map_shap_to_residues.py` | Residue-level mapping |
-| `analyze_logpso_failure.py` | LOGPSO failure analysis |
-
-### Figures & Results
-| Script | Description |
-|--------|-------------|
-| `generate_figures_for_manuscript.py` | Main results figures |
-| `generate_schematic_figure.py` | Figure 1 architecture schematic |
-| `generate_supplementary_materials.py` | Supplementary figures/tables |
-| `generate_wetlab_candidates_650m.py` | Wet-lab candidate sets |
-| `statistical_significance_test_paired.py` | Statistical tests |
-
----
-
-## Quick Start (Reproduction)
-
-See `reproducible_package/README.md` for step-by-step reproduction.
+## Reproduction
 
 ```bash
-# Install dependencies
-pip install -r reproducible_package/requirements.txt
+# Clone repo
+git clone https://github.com/nblvguohao/gpcr-coupling-leakage-benchmark.git
+cd gpcr-coupling-leakage-benchmark
 
-# Run cross-validation
-python paired_cross_validation_enhanced_v2_650m.py
+# Reproduce main CV results
+python code/cross_validation.py
+
+# Generate figures
+python code/fig_bib.py
+python code/fig_manuscript.py
+
+# Run analysis
+python code/run_analysis.py
 ```
 
----
+Pre-computed features and results are in `data/` — no GPU required for reproduction.
+
+## Software Tool
+
+```bash
+# Install
+pip install -e .
+
+# Predict coupling
+gpcr-coupling predict --gpcr example.fasta --gprotein Gq
+
+# Extract features
+gpcr-coupling extract-features --input sequences.fasta --output-dir features/
+```
 
 ## Citation
 
-```
-Lü G, Xia Y, Liu H, et al. Topology-Aware GPCR-G Protein Coupling Prediction 
-via ESM-2 Embeddings and Curated Transmembrane Annotations. 
-Briefings in Bioinformatics. 2026.
-```
+Lü G, Xia Y, Liu H, Gu L, Wang Q. Paired prediction of GPCR-G protein coupling specificity using protein language models and topology-aware feature engineering. *Briefings in Bioinformatics*. 2026.
 
----
+## License
 
-## Key Findings
-
-1. **Paired formulation**: Reformulating coupling prediction as (GPCR, G protein) pairwise classification is biologically more faithful
-2. **Dimension alignment**: ICL local features must match ESM-2 embedding dimension (1280-d)
-3. **AlphaFold redundancy**: Structural features provide no gain beyond ESM-2 650M
-4. **Cross-family gap**: LOGPSO AUC ~0.60 indicates family-specific learned patterns
-5. **GPCR-centric**: GPCR features dominate prediction (5-7× higher sensitivity than G protein)
+MIT
