@@ -8,15 +8,15 @@
 - **Dataset**: 1,647 pairs, 431 GPCRs, 4 G protein families, 387 sequence clusters
 - **Brier score**: 0.008 (CA) vs 0.039 (SVM) — well-calibrated probabilities
 - **Key finding**: ICL local features must match global ESM embedding dimension
-- **Negative result**: AlphaFold structural descriptors provide no gain beyond ESM-2 650M
+- **Finding**: Standard AlphaFold structural descriptors provide no incremental benefit beyond ESM-2 650M for family-level coupling classification
 
 ## Repository Structure
 
 ```
 ├── manuscript/           # Manuscript source + compiled PDF
 │   ├── main.tex          # LaTeX source (BIB formatted)
-│   ├── main.pdf          # Compiled manuscript (21 pages)
-│   ├── references.bib    # 45 references
+│   ├── main.pdf          # Compiled manuscript
+│   ├── references.bib    # 43 references
 │   ├── supplementary.tex # Supplementary materials
 │   └── supplementary.pdf
 ├── code/                 # Core scripts (18 files)
@@ -85,7 +85,7 @@ gpcr-coupling extract-features --input sequences.fasta --output-dir features/
 
 ## Citation
 
-Lü G, Xia Y, Liu H, Gu L, Wang Q. Paired prediction of GPCR-G protein coupling specificity using protein language models and topology-aware feature engineering. *Briefings in Bioinformatics*. 2026.
+Lü G, Xia Y, Liu H, Zhu X, Yang S, Gu L, Wang Q. Paired prediction of GPCR-G protein coupling specificity using protein language models and topology-aware feature engineering. *Briefings in Bioinformatics*. 2026.
 
 ## License
 

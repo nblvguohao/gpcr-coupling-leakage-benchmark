@@ -4,9 +4,10 @@
 
 - **Target**: *Briefings in Bioinformatics* (Oxford, IF ~13.4, CAS 一区)
 - **Article type**: Original Research Article
-- **Pages**: 17 (main text + references + figure pages)
+- **Pages**: ~19 (main text + references + figure pages)
 - **Figures**: 6 main + 3 supplementary
-- **References**: 45
+- **References**: 43
+- **Authors**: 7 (including 2 corresponding authors)
 - **LaTeX compilation**: `pdflatex → bibtex → pdflatex × 2`
 
 ## Files to Submit
@@ -46,12 +47,12 @@
 
 1. **Key Points box** — BIB-required structured highlights
 2. **Software tool** — `gpcr-coupling` CLI with predict/extract/evaluate/train commands
-3. **Comprehensive benchmarking** — SVM, MLP, RF, XGBoost, Cross-Attention compared
+3. **Systematic benchmarking** — SVM, MLP, RF, XGBoost, Cross-Attention compared
 4. **Promiscuity-stratified analysis** — Cross-attention advantage quantified by GPCR coupling complexity
 5. **Calibration analysis** — Brier score, ECE, confidence stratification (critical for practical deployment)
 6. **Case study** — Orphan GPCR deorphanization predictions
 7. **Expanded discussion** — Tutorial, practical guidelines, community benchmark proposal
-8. **References** — 18 → 45, covering all relevant domains
+8. **References** — 43 citations covering GPCR biology, PLMs, PPI prediction, and evaluation methodology
 9. **Supplementary materials** — Extended with parameter sensitivity, training stability, computational resources
 10. **Feature importance** — Integrated gradient attribution with per-group breakdown
 
@@ -63,6 +64,20 @@ bibtex BIOINFORMATICS_MANUSCRIPT
 pdflatex BIOINFORMATICS_MANUSCRIPT
 pdflatex BIOINFORMATICS_MANUSCRIPT
 ```
+
+## Pre-Submission Cleanup
+
+The following files in `figures/` are not referenced in the manuscript and should be removed before final packaging:
+- `ChatGPT Image 2026年5月11日 14_53_56.png` (temporary file)
+- `figure1_schematic.pdf` (replaced by `figure1_schematic_cropped.pdf`)
+- `figure1_auc_comparison.png` (PDF version used)
+- `figure1_schematic.png` (PDF version used)
+- `figure_statistical_tests.pdf` (unused)
+- `supp_figure1_fold_auc_bars.pdf/png` (unused)
+- `supp_figure2_baseline_boxplot.pdf/png` (unused)
+- `supp_table1_hyperparams.png` (unused)
+- `supp_table2_alphafold_features.png` (unused)
+- `table_statistical_tests.png` (unused)
 
 ## Submission System Checklist
 

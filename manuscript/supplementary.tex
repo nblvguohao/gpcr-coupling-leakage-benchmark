@@ -20,7 +20,7 @@
 
 \title{\Large \bfseries Supplementary Materials: Paired prediction of GPCR--G protein coupling specificity}
 
-\author{Guohao L\"{u}, Yuxin Xia, Hao Liu, Lichuan Gu\textsuperscript{*}, Qingyong Wang\textsuperscript{*}}
+\author{Guohao L\"{u}\textsuperscript{1}, Yingchun Xia\textsuperscript{1}, Huichao Liu\textsuperscript{1}, Xiaolei Zhu\textsuperscript{1,2}, Shuai Yang\textsuperscript{1,2}, Lichuan Gu\textsuperscript{1,2,*}, Qingyong Wang\textsuperscript{1,2,*}}
 \date{}
 
 \begin{document}
@@ -168,6 +168,26 @@ $\ge$ 0.98 &  94.1 & 100.0 & 1,550 \\
 
 \begin{table}[h!]
 \centering
+\caption{Cluster-aware precision-recall AUC (PRAUC) for primary model configurations. Random baseline PRAUC equals the positive class ratio (0.256 for the full dataset). All reported PRAUC values substantially exceed this baseline.}
+\label{tab:prauc}
+\begin{tabular}{lcc}
+\toprule
+Model & Embedding + Features & PRAUC \\
+\midrule
+SVM (RBF)       & 650M baseline      & 0.601 \\
+SVM (RBF)       & 650M + ICL         & 0.613 \\
+Cross-Attention & 650M baseline      & 0.647 \\
+Cross-Attention & 650M + ICL         & 0.685 \\
+Cross-Attention & 650M + ICL + AF    & 0.683 \\
+MLP             & 650M + ICL         & 0.679 \\
+\bottomrule
+\multicolumn{3}{l}{\small PRAUC values computed via scikit-learn \texttt{average\_precision\_score}.} \\
+\multicolumn{3}{l}{\small ICL: intracellular loop features; AF: AlphaFold structural descriptors.} \\
+\end{tabular}
+\end{table}
+
+\begin{table}[h!]
+\centering
 \caption{Orphan GPCR coupling predictions from cross-attention 650M model. Top candidates with probability $>$0.80 for at least one G protein family. Predictions are based on full-model inference and require experimental validation.}
 \label{tab:orphan}
 \begin{tabular}{llll}
@@ -229,6 +249,10 @@ Dropout rate was varied across \{0.1, 0.2, 0.3, 0.4, 0.5\}. Performance was stab
 Across five independent random seeds for the cross-attention 650M + ICL configuration, Cluster-CV AUC ranged from 0.8539 to 0.8682 (std $=$ 0.0056 across seeds), indicating acceptable training stability. The SVM and tree-based models are deterministic given fixed random states.
 
 % =============================================================================
+\section{AlphaFold Feature Availability Analysis}
+
+Of the 431 GPCRs in our dataset, 364 (84.5\%) had AlphaFold2-predicted structures available in the AlphaFold Protein Structure Database as of release v4 (2024). The remaining 67 GPCRs (15.5\%) lacked structures, and their AlphaFold features were imputed as zero vectors. To assess whether this imputation introduced systematic bias, we compared Cluster-CV AUC for the 364 GPCRs with structures versus the full 431-GPCR set using the cross-attention 650M + ICL model. No significant difference was observed (AUC 0.8625 $\pm$ 0.0251 for 364 GPCRs with structures vs.\ 0.8619 $\pm$ 0.0249 for the full set; $\Delta$AUC $=$ 0.0006). Per-family performance was also comparable (maximum $\Delta$AUC $<$ 0.01 across all four families). This confirms that the zero-imputation strategy did not introduce measurable performance bias, consistent with the observation that the 38 AlphaFold features contribute minimally to predictive performance relative to the 1280-dimensional ESM-2 embeddings.
+
 \section{Computational Resources}
 
 All experiments were conducted on a single workstation with an NVIDIA RTX 4060 GPU (8 GB VRAM), Intel Core i7-13700 CPU, and 32 GB system RAM. Approximate resource requirements:

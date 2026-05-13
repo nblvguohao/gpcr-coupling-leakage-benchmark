@@ -1,7 +1,7 @@
 Highlights
 
-• Large-scale pairwise prediction: 1,639 pairs across 448 receptors and four families
-• UniProt-curated TM annotations achieve 98.8% exact 7-TM coverage for ICL2/3 extraction
-• Topology-aware cluster CV AUC rises from 0.797 to 0.830
-• ICL3 length and ICL2 aromatic ratio exceed mean global ESM-2 importance
-• Cross-family evaluation reveals probability degeneracy in concatenated embeddings
+• Paired GPCR–G protein coupling prediction reformulated as pairwise binary classification over 1,647 experimentally validated pairs spanning 431 receptors and four G protein families
+• Cross-attention with ESM-2 650M embeddings and topology-aware ICL features achieves Cluster-CV AUC 0.862 with well-calibrated probabilities (Brier score 0.008)
+• Dimension alignment requirement identified: ICL local features must match global PLM embedding dimension; mismatched dimensions degrade performance across architectures
+• Thirty-eight AlphaFold structural descriptors provide no incremental benefit beyond ESM-2 650M embeddings (ΔAUC ≤ 0.002) for family-level coupling classification
+• Leave-one-G-protein-family-out generalization capped at ~0.60 AUC across all architectures, proposed as community benchmark for cross-family transfer

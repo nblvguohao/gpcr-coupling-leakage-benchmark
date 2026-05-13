@@ -8,7 +8,11 @@
 \address{School of Artificial Intelligence\\
 Anhui Agricultural University\\
 Hefei 230036, China\\
-Email: wqy@ahau.edu.cn; glc@ahau.edu.cn}
+Email: wqy@ahau.edu.cn; glc@ahau.edu.cn\\
+\vspace{0.3cm}
+Anhui Province Key Laboratory of Intelligent Agricultural Technology and Equipment\\
+Anhui Agricultural University\\
+Hefei 230036, China}
 
 \begin{document}
 
@@ -32,7 +36,7 @@ for consideration as an \textbf{Original Research Article} in \textit{Briefings 
   \item Reformulates GPCR--G protein coupling as a paired binary classification over 1,647 (GPCR, G protein family) pairs---incorporating G protein identity as explicit input rather than a class label.
   \item Cross-attention + ESM-2 650M embeddings + topology-aware ICL features achieves AUC 0.862 (cluster-aware CV), with Brier score 0.008 indicating well-calibrated, deployment-ready probabilities.
   \item Critical dimension-alignment finding: ICL local features must match global embedding dimension---mixing dimensions degrades performance across all architectures.
-  \item AlphaFold structural descriptors provide zero incremental gain beyond ESM-2 650M, demonstrating that large protein language models implicitly encode structural information.
+  \item Thirty-eight standard AlphaFold structural descriptors provide no incremental benefit beyond ESM-2 650M embeddings ($\Delta$AUC $\le$ 0.002), demonstrating that these PLM representations already capture structurally relevant information for family-level coupling classification.
   \item Open-source tool \texttt{gpcr-coupling} with pre-trained models and tutorial; all code, data, and results at \url{https://github.com/nblvguohao/gpcr-coupling-leakage-benchmark}.
 \end{itemize}
 
@@ -40,14 +44,14 @@ for consideration as an \textbf{Original Research Article} in \textit{Briefings 
 
 G protein-coupled receptors (GPCRs) mediate cellular responses by coupling to heterotrimeric G proteins, yet computational prediction of coupling specificity---which determines downstream signaling---remains an open challenge with direct implications for orphan receptor deorphanization and rational drug design. Existing approaches predominantly treat this as single-protein classification, neglecting the paired nature of the interaction.
 
-In this study, we present a comprehensive framework that reformulates GPCR--G protein coupling prediction as a pairwise binary classification problem over 1,647 experimentally validated (GPCR, G protein family) pairs spanning 431 GPCRs across four G protein families. Our approach integrates protein language model embeddings (ESM-2, up to 650M parameters), topology-aware intracellular loop features, and a cross-attention architecture with systematic comparison against five baseline methods.
+In this study, we reformulate GPCR--G protein coupling prediction as a pairwise binary classification problem over 1,647 experimentally validated (GPCR, G protein family) pairs spanning 431 GPCRs across four G protein families. Our approach integrates protein language model embeddings (ESM-2, up to 650M parameters), topology-aware intracellular loop features, and a cross-attention architecture with systematic comparison against five baseline methods.
 
 \textbf{Key contributions:}
 
 \begin{enumerate}
-    \item \textbf{Comprehensive benchmarking:} First systematic comparison of SVM, MLP, Random Forest, XGBoost, and cross-attention architectures for GPCR coupling prediction under multiple evaluation protocols (random CV, cluster-aware CV, leave-one-G-protein-family-out).
+    \item \textbf{Systematic benchmarking:} First comparison of SVM, MLP, Random Forest, XGBoost, and cross-attention architectures for GPCR coupling prediction under three evaluation protocols (random CV, cluster-aware CV, leave-one-G-protein-family-out).
 
-    \item \textbf{Novel methodological findings:} (i) A dimension alignment requirement for local-global protein language model feature fusion---mixing heterogeneous embedding dimensions systematically degrades performance. (ii) Evidence that AlphaFold structural descriptors provide no incremental benefit beyond ESM-2 650M embeddings, justifying sequence-only pipelines for large-scale screening.
+    \item \textbf{Methodological findings:} (i) A dimension alignment requirement for local-global protein language model feature fusion---mixing heterogeneous embedding dimensions systematically degrades performance. (ii) Under the 38 AlphaFold structural descriptors examined, ESM-2 650M embeddings capture overlapping information such that explicit structural features contribute no incremental benefit ($\Delta$AUC $\le$ 0.002), supporting sequence-only pipelines for family-level coupling prediction.
 
     \item \textbf{Rigorous evaluation:} The cross-attention model achieves AUC 0.862 under strict cluster-aware cross-validation, with substantially better calibration than SVM (Brier score 0.008 vs.\ 0.039). LOGPSO evaluation reveals a $\sim$0.60 AUC ceiling across \textit{all} tested architectures, which we propose as a community benchmark for tracking cross-family generalization progress.
 
@@ -64,8 +68,8 @@ We believe this work aligns closely with \textit{Briefings in Bioinformatics} fo
 
 \begin{itemize}
     \item Main text: $\sim$7,000 words, 6 figures, 3 tables
-    \item Supplementary: 5 additional tables, 3 supplementary figures, parameter sensitivity analysis
-    \item References: 45
+    \item Supplementary: 8 additional tables (including PRAUC values, confidence stratification, hyperparameter configurations), 3 supplementary figures, parameter sensitivity analysis, AlphaFold feature availability analysis
+    \item References: 43
     \item All code, data, and pre-trained models publicly available
 \end{itemize}
 
@@ -75,7 +79,7 @@ All source code, curated datasets, pre-computed features, and trained model weig
 
 \textbf{Author Contributions}
 
-G.L. and Y.X. conceived the study and designed experiments. G.L. implemented models and performed analyses. H.L. contributed to data curation. L.G. and Q.W. supervised the research. All authors reviewed and approved the manuscript.
+G.L., Y.X., and H.L. conceived the study and designed experiments. G.L. implemented models and performed analyses. H.L. contributed to data curation. X.Z. and S.Y. contributed to methodology refinement and result interpretation. L.G. and Q.W. supervised the research. All authors reviewed and approved the manuscript.
 
 \textbf{Conflict of Interest}
 
