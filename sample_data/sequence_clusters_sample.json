@@ -1,0 +1,84 @@
+{
+  "n_clusters": 13,
+  "threshold": 0.3,
+  "clusters": [
+    {
+      "cluster_id": 1,
+      "members": [
+        "O00222"
+      ]
+    },
+    {
+      "cluster_id": 51,
+      "members": [
+        "D6VTK4"
+      ]
+    },
+    {
+      "cluster_id": 52,
+      "members": [
+        "O00144"
+      ]
+    },
+    {
+      "cluster_id": 53,
+      "members": [
+        "O00155"
+      ]
+    },
+    {
+      "cluster_id": 54,
+      "members": [
+        "O00254"
+      ]
+    },
+    {
+      "cluster_id": 55,
+      "members": [
+        "O00270"
+      ]
+    },
+    {
+      "cluster_id": 56,
+      "members": [
+        "O00398"
+      ]
+    },
+    {
+      "cluster_id": 57,
+      "members": [
+        "O00421"
+      ]
+    },
+    {
+      "cluster_id": 58,
+      "members": [
+        "O00574"
+      ]
+    },
+    {
+      "cluster_id": 59,
+      "members": [
+        "O00590"
+      ]
+    },
+    {
+      "cluster_id": 61,
+      "members": [
+        "O14514"
+      ]
+    },
+    {
+      "cluster_id": 62,
+      "members": [
+        "O14626"
+      ]
+    },
+    {
+      "cluster_id": 63,
+      "members": [
+        "O14804"
+      ]
+    }
+  ]
+}

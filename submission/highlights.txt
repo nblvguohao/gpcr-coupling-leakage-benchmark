@@ -1,7 +1,0 @@
-Highlights
-
-• Paired GPCR–G protein coupling prediction reformulated as pairwise binary classification over 1,647 experimentally validated pairs spanning 431 receptors and four G protein families
-• Cross-attention with ESM-2 650M embeddings and topology-aware ICL features achieves Cluster-CV AUC 0.862 with well-calibrated probabilities (Brier score 0.008)
-• Dimension alignment requirement identified: ICL local features must match global PLM embedding dimension; mismatched dimensions degrade performance across architectures
-• Thirty-eight AlphaFold structural descriptors provide no incremental benefit beyond ESM-2 650M embeddings (ΔAUC ≤ 0.002) for family-level coupling classification
-• Leave-one-G-protein-family-out generalization capped at ~0.60 AUC across all architectures, proposed as community benchmark for cross-family transfer

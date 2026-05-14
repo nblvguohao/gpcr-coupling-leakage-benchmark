@@ -1,0 +1,5 @@
+{
+  "full_model_mean_auc": 0.86,
+  "no_icl_auc": 0.84,
+  "no_esm_auc": 0.8
+}

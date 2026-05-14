@@ -1,0 +1,8 @@
+{
+  "cv_type": "cluster-aware_5fold",
+  "num_folds": 5,
+  "metrics": [
+    "AUC",
+    "Brier"
+  ]
+}

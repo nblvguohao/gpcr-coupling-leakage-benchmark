@@ -1,212 +1,371 @@
 #!/usr/bin/env python3
 """
-Generate Figure 1: Schematic overview of the study design, feature engineering,
-and cross-attention architecture.
+Figure 1: Professional schematic overview — data pipeline, feature engineering,
+and cross-attention architecture. Publication-quality for Briefings in Bioinformatics.
 """
 
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
-from matplotlib.patches import FancyBboxPatch, FancyArrowPatch, Circle, Rectangle
+from matplotlib.patches import FancyBboxPatch, FancyArrowPatch, Arc
+from matplotlib.path import Path
+import matplotlib.patheffects as pe
 import numpy as np
-from pathlib import Path
+from pathlib import Path as PathLib
 
 from style_config import apply_style, WONG
 
 apply_style()
 
-BASE = Path(__file__).parent
+BASE = PathLib(__file__).parent
 FIG_DIR = BASE.parent / "figures"
 FIG_DIR.mkdir(exist_ok=True)
 
-# Wong colorblind-safe palette
-COLORS = {
-    "gpcr":    WONG["blue"],
-    "gprot":   WONG["orange"],
-    "icl":     WONG["green"],
-    "alpha":   WONG["yellow"],
-    "esm":     WONG["cyan"],
-    "box_bg":  "#ecf0f1",
-    "arrow":   WONG["dark"],
-    "text":    WONG["dark"],
+# ── Color palette ──────────────────────────────────────────────────
+C = {
+    "gpcr":       "#2471A3",   # deep blue
+    "gpcr_light": "#D4E6F1",
+    "gprot":      "#D35400",   # deep orange
+    "gprot_light":"#FAD7A1",
+    "icl":        "#1E8449",   # deep green
+    "icl_light":  "#D5F5E3",
+    "af":         "#95A5A6",   # grey
+    "af_light":   "#E5E7E9",
+    "nn":         "#7D3C98",   # purple for neural
+    "nn_light":   "#E8DAEF",
+    "panel_bg":   "#F8F9FA",
+    "border":     "#BDC3C7",
+    "arrow":      "#5D6D7E",
+    "text":       "#2C3E50",
+    "white":      "#FFFFFF",
+    "gold":       "#F4D03F",
+    "red_accent": "#C0392B",
+    "family":     ["#3498DB", "#E74C3C", "#F39C12", "#9B59B6"],
+    "cross_attn": "#E67E22",
 }
 
+FAMILY_NAMES = ["Gq/11\n(n=?)", "Gi/o\n(n=?)", "Gs\n(n=?)", "G12/13\n(n=?)"]
 
-def draw_box(ax, xy, width, height, text, color, fontsize=9, text_color="white", radius=0.02):
-    box = FancyBboxPatch(
-        xy, width, height,
-        boxstyle=f"round,pad=0.02,rounding_size={radius}",
-        facecolor=color, edgecolor="black", linewidth=1.2, zorder=2
-    )
+# ── Drawing primitives ─────────────────────────────────────────────
+
+def rounded_box(ax, xy, w, h, facecolor, edgecolor=None, lw=1.2, radius=0.08,
+                text="", fontsize=8, textcolor="white", fontweight="bold", zorder=3):
+    """Draw a rounded box with optional text."""
+    if edgecolor is None:
+        edgecolor = C["border"]
+    box = FancyBboxPatch(xy, w, h,
+                         boxstyle=f"round,pad=0.02,rounding_size={radius}",
+                         facecolor=facecolor, edgecolor=edgecolor,
+                         linewidth=lw, zorder=zorder)
     ax.add_patch(box)
-    ax.text(xy[0] + width/2, xy[1] + height/2, text,
-            ha="center", va="center", fontsize=fontsize,
-            color=text_color, fontweight="bold", zorder=3)
+    if text:
+        ax.text(xy[0] + w/2, xy[1] + h/2, text, ha="center", va="center",
+                fontsize=fontsize, color=textcolor, fontweight=fontweight, zorder=zorder+1)
 
 
-def draw_arrow(ax, start, end, color=COLORS["arrow"]):
-    ax.annotate("", xy=end, xytext=start,
-                arrowprops=dict(arrowstyle="->", color=color, lw=1.5),
-                zorder=1)
+def text_box(ax, xy, w, h, text, facecolor=C["panel_bg"], edgecolor=C["border"],
+             fontsize=8, textcolor=C["text"], fontweight="normal", lw=1.0, radius=0.06, zorder=3):
+    """Draw a light-background box with dark text."""
+    rounded_box(ax, xy, w, h, facecolor, edgecolor, lw, radius,
+                text, fontsize, textcolor, fontweight, zorder)
 
+
+def arrow(ax, x0, y0, x1, y1, color=C["arrow"], lw=1.5, style="->", zorder=1, ls="-"):
+    """Draw a simple arrow."""
+    ax.annotate("", xy=(x1, y1), xytext=(x0, y0),
+                arrowprops=dict(arrowstyle=style, color=color, lw=lw, ls=ls),
+                zorder=zorder)
+
+
+def curved_arrow(ax, x0, y0, x1, y1, color=C["arrow"], lw=1.2, rad=0.2, zorder=1):
+    """Draw a curved arrow using FancyArrowPatch."""
+    ax.annotate("", xy=(x1, y1), xytext=(x0, y0),
+                arrowprops=dict(arrowstyle="->", color=color, lw=lw,
+                                connectionstyle=f"arc3,rad={rad}"),
+                zorder=zorder)
+
+
+def section_label(ax, x, y, letter, title):
+    """Draw a section label like 'A. Dataset Curation'."""
+    ax.text(x, y, f"{letter}. {title}", fontsize=11, fontweight="bold",
+            color=C["text"], ha="left", va="center")
+
+
+def plus_mark(ax, x, y, fontsize=12, color=C["arrow"]):
+    ax.text(x, y, "+", fontsize=fontsize, ha="center", va="center",
+            fontweight="bold", color=color)
+
+
+def cross_mark(ax, x, y, fontsize=12):
+    ax.text(x, y, "✗", fontsize=fontsize, ha="center", va="center",
+            fontweight="bold", color=C["red_accent"])
+
+
+# ── Panel A: Data Pipeline ─────────────────────────────────────────
 
 def panel_a(ax):
-    """Data curation and evaluation framework."""
-    ax.set_xlim(0, 10)
-    ax.set_ylim(0, 10)
+    ax.set_xlim(0, 16)
+    ax.set_ylim(0, 6)
     ax.axis("off")
-    ax.set_title("A. Dataset curation and evaluation", fontweight="bold", fontsize=13, loc="left", pad=10)
 
-    # GPCRdb box
-    draw_box(ax, (0.5, 7.0), 2.0, 0.8, "GPCRdb\nannotations", COLORS["gpcr"], fontsize=8)
-    # Literature box
-    draw_box(ax, (0.5, 5.5), 2.0, 0.8, "Literature\ncuration", "#1abc9c", fontsize=8)
-    # Arrow to pairing matrix
-    draw_arrow(ax, (1.5, 7.0), (3.0, 6.5))
-    draw_arrow(ax, (1.5, 6.3), (3.0, 6.5))
+    # Background
+    bg = FancyBboxPatch((0.05, 0.1), 15.9, 5.8,
+                        boxstyle="round,pad=0.02,rounding_size=0.15",
+                        facecolor="#EBF5FB", edgecolor="none", zorder=0, alpha=0.5)
+    ax.add_patch(bg)
+    section_label(ax, 0.3, 5.5, "A", "Dataset Curation & Evaluation Framework")
 
-    # 1,639 pairs
-    draw_box(ax, (3.0, 6.0), 2.2, 1.0, "1,639 pairs\n(431 GPCRs)", COLORS["box_bg"], text_color=COLORS["text"], fontsize=9)
+    # ── Row 1: Data sources ──
+    y1 = 4.0
+    rounded_box(ax, (0.5, y1), 2.0, 0.9, C["gpcr"], C["gpcr"],
+                text="GPCRdb\nAnnotations", fontsize=7.5, textcolor="white")
+    rounded_box(ax, (2.8, y1), 2.0, 0.9, C["gpcr"], C["gpcr"],
+                text="Literature\nCuration", fontsize=7.5, textcolor="white")
+    arrow(ax, 2.5, y1+0.45, 2.8, y1+0.45)
+    arrow(ax, 3.8, y1+0.45, 5.5, 2.7, color=C["arrow"], lw=1.2)
 
-    # Arrow to families
-    draw_arrow(ax, (5.2, 6.5), (6.2, 6.5))
+    # ── Pairing matrix ──
+    rounded_box(ax, (5.5, 2.2), 2.8, 1.0, C["panel_bg"], C["border"],
+                text="1,647 pairs\n(431 GPCRs × 4 families)", fontsize=8.5,
+                textcolor=C["text"], fontweight="bold")
 
-    # Families
-    fam_y = 7.8
-    fam_colors = ["#3498db", "#e74c3c", "#f39c12", "#9b59b6"]
-    fam_names = ["Gq\n(388)", "Gi\n(406)", "Gs\n(298)", "G12/13\n(173)"]
-    for i, (name, c) in enumerate(zip(fam_names, fam_colors)):
-        draw_box(ax, (6.4 + i*0.85, fam_y - (i%2)*1.2), 0.75, 0.9, name, c, fontsize=8)
-        ax.annotate("", xy=(6.8 + i*0.85, fam_y + 1.0 if i%2==0 else fam_y - 0.4),
-                    xytext=(7.1, 6.5),
-                    arrowprops=dict(arrowstyle="->", color="gray", lw=0.8),
-                    zorder=1)
+    # ── G protein families ──
+    fam_y_base = 4.2
+    fam_counts = [388, 406, 298, 173]  # from data
+    for i, (name, count, fc) in enumerate(zip(
+        ["Gq/11", "Gi/o", "Gs", "G12/13"],
+        fam_counts,
+        C["family"]
+    )):
+        xf = 8.8 + i * 1.65
+        rounded_box(ax, (xf, fam_y_base - (i%2)*1.4), 1.35, 0.85,
+                    fc, fc, text=f"{name}\n(n={count})", fontsize=7, textcolor="white",
+                    radius=0.06)
+        arrow(ax, 8.3, 2.7, xf+0.675, fam_y_base+0.05 - (i%2)*1.4,
+              color=C["arrow"], lw=0.9)
 
-    # CD-HIT clustering
-    draw_box(ax, (3.0, 4.0), 2.2, 0.8, "CD-HIT 40%\n387 clusters", "#95a5a6", fontsize=8)
-    draw_arrow(ax, (4.1, 6.0), (4.1, 4.8))
+    # ── CD-HIT clustering ──
+    rounded_box(ax, (5.5, 0.7), 2.8, 0.85, "#7F8C8D", "#7F8C8D",
+                text="CD-HIT (40% identity)\n387 sequence clusters", fontsize=7.5,
+                textcolor="white")
+    arrow(ax, 6.9, 2.2, 6.9, 1.55)
 
-    # CV strategies
-    draw_box(ax, (6.0, 4.0), 1.8, 0.8, "Cluster-aware\n5-fold CV", COLORS["box_bg"], text_color=COLORS["text"], fontsize=8)
-    draw_box(ax, (8.0, 4.0), 1.6, 0.8, "LOGPSO\n(4 families)", COLORS["box_bg"], text_color=COLORS["text"], fontsize=8)
-    draw_arrow(ax, (5.2, 4.4), (6.0, 4.4))
-    draw_arrow(ax, (5.2, 4.4), (8.0, 4.4))
+    # ── Evaluation strategies ──
+    eval_y = 0.7
+    text_box(ax, (9.0, eval_y), 3.2, 0.85,
+             "Cluster-aware 5-fold CV\n(no cluster leakage)", fontsize=7.5, textcolor=C["text"])
+    text_box(ax, (12.5, eval_y), 3.0, 0.85,
+             "LOGPSO\n(4 × leave-one-family-out)", fontsize=7.5, textcolor=C["text"])
+    arrow(ax, 8.3, 1.125, 9.0, 1.125, color=C["arrow"], lw=1.0)
+    arrow(ax, 8.3, 1.125, 12.5, 1.125, color=C["arrow"], lw=1.0)
 
+    # Key metrics callout
+    ax.text(0.5, 0.15, "◆ Primary metric: Cluster-aware AUC  ◆  Secondary: Brier score, LOGPSO AUC",
+            fontsize=7, color=C["arrow"], ha="left", fontstyle="italic")
+
+
+# ── Panel B: Feature Engineering ───────────────────────────────────
 
 def panel_b(ax):
-    """Feature engineering pipeline."""
-    ax.set_xlim(0, 10)
-    ax.set_ylim(0, 10)
+    ax.set_xlim(0, 16)
+    ax.set_ylim(0, 7)
     ax.axis("off")
-    ax.set_title("B. Feature engineering", fontweight="bold", fontsize=13, loc="left", pad=10)
 
-    # GPCR global ESM
-    draw_box(ax, (0.3, 6.5), 1.8, 1.0, "GPCR ESM-2\n650M (1280-d)", COLORS["esm"], fontsize=8)
-    # G-protein global ESM
-    draw_box(ax, (0.3, 4.8), 1.8, 1.0, "G-protein ESM-2\n8M (320-d)", COLORS["gprot"], fontsize=8)
+    bg = FancyBboxPatch((0.05, 0.1), 15.9, 6.8,
+                        boxstyle="round,pad=0.02,rounding_size=0.15",
+                        facecolor="#FDF2E9", edgecolor="none", zorder=0, alpha=0.5)
+    ax.add_patch(bg)
+    section_label(ax, 0.3, 6.5, "B", "Feature Engineering Pipeline")
 
-    # Concatenation
-    ax.annotate("", xy=(2.5, 6.0), xytext=(2.1, 7.0),
-                arrowprops=dict(arrowstyle="->", color=COLORS["arrow"], lw=1.5))
-    ax.annotate("", xy=(2.5, 6.0), xytext=(2.1, 5.3),
-                arrowprops=dict(arrowstyle="->", color=COLORS["arrow"], lw=1.5))
-    ax.text(2.3, 6.5, "+", fontsize=14, ha="center", va="center", fontweight="bold")
+    # ── Column headers ──
+    col_centers = [2.5, 7.0, 11.5]
+    col_labels = ["Global Embeddings", "ICL Topology Features", "Structural Features"]
+    col_colors = [C["gpcr_light"], C["icl_light"], C["af_light"]]
+    for cx, label, cc in zip(col_centers, col_labels, col_colors):
+        ax.text(cx, 5.8, label, fontsize=9, ha="center", fontweight="bold",
+                color=C["text"],
+                bbox=dict(boxstyle="round,pad=0.3", facecolor=cc, edgecolor=C["border"], alpha=0.9))
 
-    draw_box(ax, (2.5, 5.5), 1.4, 1.0, "Global\nconcat\n(1600-d)", COLORS["box_bg"], text_color=COLORS["text"], fontsize=8)
+    # ── Column 1: Global ESM-2 ──
+    cx1 = 2.5
+    rounded_box(ax, (cx1-1.0, 4.6), 2.0, 0.75, C["gpcr"], C["gpcr"],
+                text="GPCR ESM-2 650M\n(1280-d)", fontsize=7.5, textcolor="white")
+    rounded_box(ax, (cx1-1.0, 3.5), 2.0, 0.75, C["gprot"], C["gprot"],
+                text="G Protein ESM-2 8M\n(320-d)", fontsize=7.5, textcolor="white")
+    arrow(ax, cx1, 4.6, cx1, 4.35, color=C["arrow"], lw=1.0)
+    arrow(ax, cx1, 4.25, cx1+1.8, 4.25, color=C["arrow"], lw=1.0)
 
-    # ICL features
-    draw_box(ax, (4.3, 7.2), 1.6, 0.8, "ICL2 ESM\n(1280-d)", COLORS["icl"], fontsize=8)
-    draw_box(ax, (4.3, 6.1), 1.6, 0.8, "ICL2 stats\n(8-d)", "#27ae60", fontsize=8)
-    draw_box(ax, (4.3, 5.0), 1.6, 0.8, "ICL3 ESM\n(1280-d)", COLORS["icl"], fontsize=8)
-    draw_box(ax, (4.3, 3.9), 1.6, 0.8, "ICL3 stats\n(8-d)", "#27ae60", fontsize=8)
+    # ── Column 2: ICL features ──
+    cx2 = 7.0
+    icl_items = [
+        ("ICL2 ESM (1280-d)", C["icl"]),
+        ("ICL2 PhysChem (8-d)", "#27AE60"),
+        ("ICL3 ESM (1280-d)", C["icl"]),
+        ("ICL3 PhysChem (8-d)", "#27AE60"),
+    ]
+    for j, (label, col) in enumerate(icl_items):
+        y_icl = 5.1 - j * 0.65
+        rounded_box(ax, (cx2-0.85, y_icl), 1.7, 0.5, col, col,
+                    text=label, fontsize=6.5, textcolor="white", radius=0.04)
 
-    # ICL concat
-    draw_box(ax, (6.2, 5.5), 1.2, 1.0, "ICL\nconcat\n(2576-d)", COLORS["box_bg"], text_color=COLORS["text"], fontsize=8)
-    for y_src in [7.6, 6.5, 5.4, 4.3]:
-        ax.annotate("", xy=(6.2, 6.3), xytext=(5.9, y_src),
-                    arrowprops=dict(arrowstyle="->", color="gray", lw=0.8))
+    # Dimension alignment highlight
+    ax.annotate("KEY: ICL ESM dim\nmust match global\ndim (1280-d → 1280-d)",
+                xy=(cx2+1.1, 2.5), fontsize=6.5, ha="center", color=C["red_accent"],
+                fontweight="bold",
+                bbox=dict(boxstyle="round,pad=0.3", facecolor="#FDEDEC",
+                          edgecolor=C["red_accent"], alpha=0.8, lw=0.8))
 
-    # Global + ICL
-    ax.annotate("", xy=(7.7, 6.3), xytext=(3.9, 6.3),
-                arrowprops=dict(arrowstyle="->", color=COLORS["arrow"], lw=1.5))
-    draw_box(ax, (7.7, 5.8), 1.6, 1.0, "ICL-full\n(4176-d)", COLORS["box_bg"], text_color=COLORS["text"], fontsize=9)
+    # ── Column 3: AlphaFold (optional) ──
+    cx3 = 11.5
+    rounded_box(ax, (cx3-0.85, 4.8), 1.7, 0.75,
+                "#BDC3C7", "#BDC3C7", text="AlphaFold2\n38 descriptors", fontsize=7,
+                textcolor="white", radius=0.06)
+    ax.text(cx3, 4.3, "(optional)", fontsize=7, ha="center", color=C["arrow"], fontstyle="italic")
+    cross_mark(ax, cx3, 3.8)
 
-    # AlphaFold
-    draw_box(ax, (7.7, 4.0), 1.6, 1.0, "AlphaFold\n(38-d)", COLORS["alpha"], fontsize=8)
-    ax.annotate("", xy=(8.5, 5.8), xytext=(8.5, 5.0),
-                arrowprops=dict(arrowstyle="->", color="gray", lw=0.8, ls="--"))
-    ax.text(8.8, 5.4, "optional", fontsize=8, color="gray", style="italic")
+    # ── Fusion section (bottom) ──
+    fuse_y = 1.5
+    # Coming from col 1 (global)
+    arrow(ax, cx1, 3.5, cx1, fuse_y+1.0, color=C["arrow"], lw=1.2)
+    # Coming from col 2 (ICL)
+    arrow(ax, cx2, 2.4, cx2, fuse_y+1.0, color=C["arrow"], lw=1.2)
+    # Coming from col 3 (AF, dashed)
+    arrow(ax, cx3, 3.8, cx3, fuse_y+1.0, color=C["arrow"], lw=1.0, ls="--")
 
+    # Fusion box
+    plus_mark(ax, 4.5, fuse_y+0.6, fontsize=16)
+    plus_mark(ax, 6.5, fuse_y+0.6, fontsize=16)
+
+    text_box(ax, (3.0, fuse_y), 5.0, 0.9,
+             "Full Feature Vector (4176-d)\n"
+             "GPCR: ESM(1280) + ICL2(1280+8) + ICL3(1280+8)  ∥  G protein: ESM(320)",
+             fontsize=7, textcolor=C["text"], fontweight="bold")
+
+    arrow(ax, 8.0, fuse_y+0.45, 9.5, fuse_y+0.45, color=C["nn"], lw=1.8)
+    ax.text(8.75, fuse_y+0.75, "→ Panel C", fontsize=7, ha="center", color=C["nn"],
+            fontweight="bold")
+
+    # G protein subset
+    arrow(ax, cx1, 3.5, cx1, 2.8, color=C["arrow"], lw=1.0)
+    ax.text(cx1-1.3, 3.0, "G protein:\nESM only", fontsize=6.5, ha="center", color=C["gprot"])
+
+
+# ── Panel C: Cross-Attention Architecture ──────────────────────────
 
 def panel_c(ax):
-    """Cross-attention architecture schematic."""
-    ax.set_xlim(0, 10)
-    ax.set_ylim(0, 10)
+    ax.set_xlim(0, 16)
+    ax.set_ylim(0, 7)
     ax.axis("off")
-    ax.set_title("C. Cross-attention architecture", fontweight="bold", fontsize=13, loc="left", pad=10)
 
-    # Input boxes
-    draw_box(ax, (0.5, 6.5), 1.6, 0.8, "GPCR feat\n(d_GPCR)", COLORS["gpcr"], fontsize=8)
-    draw_box(ax, (0.5, 4.5), 1.6, 0.8, "G-protein feat\n(d_Gprot)", COLORS["gprot"], fontsize=8)
+    bg = FancyBboxPatch((0.05, 0.1), 15.9, 6.8,
+                        boxstyle="round,pad=0.02,rounding_size=0.15",
+                        facecolor="#F4ECF7", edgecolor="none", zorder=0, alpha=0.5)
+    ax.add_patch(bg)
+    section_label(ax, 0.3, 6.5, "C", "Cross-Attention Neural Network")
 
-    # Projection layers
-    draw_box(ax, (2.8, 6.5), 1.4, 0.8, "Linear +\nLayerNorm +\nGELU", "#5dade2", fontsize=8)
-    draw_box(ax, (2.8, 4.5), 1.4, 0.8, "Linear +\nLayerNorm +\nGELU", "#ec7063", fontsize=8)
+    # ── Input boxes ──
+    inp_y = 4.5
+    rounded_box(ax, (0.5, inp_y+0.4), 2.0, 0.9, C["gpcr"], C["gpcr"],
+                text="GPCR Features\n(d_GPCR = 4176)", fontsize=7.5, textcolor="white")
+    rounded_box(ax, (0.5, inp_y-1.2), 2.0, 0.9, C["gprot"], C["gprot"],
+                text="G Protein Features\n(d_Gprot = 320)", fontsize=7.5, textcolor="white")
 
-    draw_arrow(ax, (2.1, 7.0), (2.8, 7.0))
-    draw_arrow(ax, (2.1, 4.9), (2.8, 4.9))
+    # ── Projection layers ──
+    proj_x = 3.2
+    rounded_box(ax, (proj_x, inp_y+0.4), 1.8, 0.9, "#5DADE2", "#5DADE2",
+                text="Linear + LN\n+ GELU → 256-d", fontsize=7, textcolor="white")
+    rounded_box(ax, (proj_x, inp_y-1.2), 1.8, 0.9, "#F1948A", "#F1948A",
+                text="Linear + LN\n+ GELU → 256-d", fontsize=7, textcolor="white")
+    arrow(ax, 2.5, inp_y+0.85, proj_x, inp_y+0.85, color=C["arrow"], lw=1.3)
+    arrow(ax, 2.5, inp_y-0.75, proj_x, inp_y-0.75, color=C["arrow"], lw=1.3)
 
-    # Cross-attention circle
-    circle = Circle((5.5, 6.0), 0.7, facecolor="#f4d03f", edgecolor="black", linewidth=1.5, zorder=2)
+    # ── Cross-Attention block ──
+    attn_cx, attn_cy = 6.5, inp_y+0.1
+    # Main attention circle
+    circle = mpatches.Ellipse((attn_cx, attn_cy), 1.8, 1.8,
+                              facecolor="#F9E79F", edgecolor=C["cross_attn"],
+                              linewidth=2.0, zorder=4)
     ax.add_patch(circle)
-    ax.text(5.5, 6.0, "Cross-\nAttn", ha="center", va="center", fontsize=8, fontweight="bold", zorder=3)
+    ax.text(attn_cx, attn_cy+0.35, "Multi-Head", fontsize=8, ha="center",
+            va="center", fontweight="bold", color=C["text"], zorder=5)
+    ax.text(attn_cx, attn_cy-0.15, "Cross-Attention", fontsize=8.5, ha="center",
+            va="center", fontweight="bold", color=C["cross_attn"], zorder=5)
+    ax.text(attn_cx, attn_cy-0.6, "4 heads × 64-d", fontsize=6.5, ha="center",
+            va="center", color=C["arrow"], zorder=5)
 
     # Arrows into attention
-    ax.annotate("", xy=(4.8, 6.3), xytext=(4.2, 6.9),
-                arrowprops=dict(arrowstyle="->", color=COLORS["arrow"], lw=1.2))
-    ax.text(4.3, 6.8, "q", fontsize=8, color=COLORS["gpcr"], fontweight="bold")
+    ax.annotate("Q", xy=(attn_cx-0.5, attn_cy+0.4), fontsize=9, fontweight="bold",
+                color=C["gpcr"], ha="center", va="center")
+    ax.annotate("K,V", xy=(attn_cx-0.5, attn_cy-0.5), fontsize=8, fontweight="bold",
+                color=C["gprot"], ha="center", va="center")
+    arrow(ax, proj_x+1.8, inp_y+0.85, attn_cx-0.95, attn_cy+0.4,
+          color=C["gpcr"], lw=1.5)
+    arrow(ax, proj_x+1.8, inp_y-0.75, attn_cx-0.95, attn_cy-0.4,
+          color=C["gprot"], lw=1.5)
 
-    ax.annotate("", xy=(4.8, 5.7), xytext=(4.2, 5.1),
-                arrowprops=dict(arrowstyle="->", color=COLORS["arrow"], lw=1.2))
-    ax.text(4.3, 5.3, "k,v", fontsize=8, color=COLORS["gprot"], fontweight="bold")
+    # ── Post-attention processing ──
+    post_x = attn_cx + 1.5
+    rounded_box(ax, (post_x, attn_cy-0.4), 1.6, 0.8, C["nn_light"], C["nn"],
+                text="Concat\n+ Skip", fontsize=7.5, textcolor=C["text"],
+                fontweight="bold", lw=1.3)
 
-    # Concatenation and FFN
-    draw_box(ax, (6.6, 6.2), 1.4, 0.8, "Concat +\nFFN", "#aab7b8", fontsize=8)
-    ax.annotate("", xy=(6.6, 6.6), xytext=(6.2, 6.3),
-                arrowprops=dict(arrowstyle="->", color=COLORS["arrow"], lw=1.2))
-    # Skip connection from GPCR projection
-    ax.annotate("", xy=(6.6, 6.4), xytext=(4.2, 6.9),
-                arrowprops=dict(arrowstyle="->", color="gray", lw=0.8, connectionstyle="arc3,rad=0.3"))
+    # Skip connection (curved, from GPCR projection to concat)
+    curved_arrow(ax, proj_x+0.9, inp_y+0.85, post_x+0.2, attn_cy+0.3,
+                 color=C["arrow"], lw=1.0, rad=0.3)
 
-    # Output
-    draw_box(ax, (8.4, 6.4), 1.2, 0.6, "Sigmoid", COLORS["box_bg"], text_color=COLORS["text"], fontsize=8)
-    draw_arrow(ax, (8.0, 6.6), (8.4, 6.7))
+    # FFN
+    ffn_x = post_x + 2.2
+    rounded_box(ax, (ffn_x, attn_cy-0.4), 1.6, 0.8, C["nn"], C["nn"],
+                text="3-Layer FFN\nGELU + LN\nDropout 0.3", fontsize=7,
+                textcolor="white")
+    arrow(ax, post_x+1.6, attn_cy, ffn_x, attn_cy, color=C["arrow"], lw=1.3)
 
-    # Output label
-    ax.text(9.6, 6.7, "P(coupling)", fontsize=9, ha="left", va="center", fontweight="bold")
+    # ── Output ──
+    out_x = ffn_x + 2.0
+    rounded_box(ax, (out_x, attn_cy-0.3), 1.4, 0.6, C["cross_attn"], C["cross_attn"],
+                text="Sigmoid", fontsize=8, textcolor="white")
+    arrow(ax, ffn_x+1.6, attn_cy, out_x, attn_cy, color=C["arrow"], lw=1.3)
 
-    # Architecture parameters box
-    draw_box(ax, (6.2, 3.8), 3.2, 1.2, "Hidden dim = 256\nNum heads = 4\nDropout = 0.3",
-             "#fdfefe", text_color=COLORS["text"], fontsize=8, radius=0.05)
-    ax.text(7.8, 5.2, "Architecture hyperparameters", fontsize=9, ha="center", va="bottom",
-            fontweight="bold", color=COLORS["text"])
+    # Final output
+    ax.text(out_x+1.6, attn_cy-0.05, "P(coupling)\n∈ [0, 1]", fontsize=8.5,
+            ha="center", va="center", fontweight="bold", color=C["text"],
+            bbox=dict(boxstyle="round,pad=0.3", facecolor="white",
+                      edgecolor=C["cross_attn"], lw=1.2))
 
+    # ── Key metrics callout ──
+    rounded_box(ax, (0.5, 0.5), 6.5, 1.0, "#2C3E50", "#2C3E50",
+                text="AUC = 0.862 (cluster-CV)    |    Brier = 0.008    |    PR-AUC = 0.690",
+                fontsize=8, textcolor="white", radius=0.06)
+
+    # ── Loss function & training ──
+    ax.text(8.0, 1.0, "Loss: Binary Cross-Entropy\n"
+            "Optimizer: AdamW (lr=1e-4, wd=1e-4)\n"
+            "Batch: 64  |  Early stopping patience: 20",
+            fontsize=6.5, ha="left", color=C["arrow"])
+
+
+# ── Main ───────────────────────────────────────────────────────────
 
 def main():
-    fig = plt.figure(figsize=(14, 10))
-    gs = fig.add_gridspec(2, 2, height_ratios=[1, 1], width_ratios=[1, 1])
+    fig = plt.figure(figsize=(16, 18))
+    gs = fig.add_gridspec(3, 1, height_ratios=[1.0, 1.15, 1.1], hspace=0.25)
 
-    ax_a = fig.add_subplot(gs[0, :])
-    ax_b = fig.add_subplot(gs[1, 0])
-    ax_c = fig.add_subplot(gs[1, 1])
+    ax_a = fig.add_subplot(gs[0])
+    ax_b = fig.add_subplot(gs[1])
+    ax_c = fig.add_subplot(gs[2])
 
     panel_a(ax_a)
     panel_b(ax_b)
     panel_c(ax_c)
 
-    plt.tight_layout()
-    plt.savefig(FIG_DIR / "figure1_schematic.png", dpi=300, bbox_inches="tight")
-    plt.savefig(FIG_DIR / "figure1_schematic.pdf", bbox_inches="tight")
-    print(f"[OK] Saved schematic figure to {FIG_DIR / 'figure1_schematic.png'}")
+    # Global title
+    fig.suptitle("GPCR–G Protein Coupling Prediction: Study Overview",
+                 fontsize=14, fontweight="bold", y=0.995, color=C["text"])
+
+    plt.tight_layout(rect=[0, 0, 1, 0.99])
+    fig.savefig(FIG_DIR / "figure1_schematic.png", dpi=300, bbox_inches="tight")
+    fig.savefig(FIG_DIR / "figure1_schematic.pdf", format="pdf", bbox_inches="tight")
+    plt.close(fig)
+    print(f"[OK] Saved figure1_schematic.png / .pdf")
 
 
 if __name__ == "__main__":
