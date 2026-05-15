@@ -92,7 +92,7 @@ The benchmark uses paired GPCR–G protein data with the following schema:
 | `g_protein_family` | Gi, Gs, Gq, G12/13 |
 | `coupling` | Binary label (0 or 1) |
 | `source` | Data source (gpcrdb_iuphar, local_seed) |
-| `cluster_id` | CD-HIT sequence cluster assignment |
+| `cluster_id` | 3-mer Jaccard single-linkage cluster assignment |
 
 Sample data is provided in `sample_data/` for format reference. The full benchmark dataset is available upon request.
 
