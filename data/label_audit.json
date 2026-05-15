@@ -1,0 +1,144 @@
+{
+  "description": "Label audit: tiered evaluation by label quality",
+  "dataset_summary": {
+    "n_pairs": 1639,
+    "n_gpcrs": 448,
+    "n_zero_positive_gpcrs": 165,
+    "species_distribution": {
+      "human": 1639
+    },
+    "evidence_distribution": {
+      "direct_assay": 417,
+      "curated_negative": 638,
+      "inferred_negative": 584
+    }
+  },
+  "tiered_results": {
+    "tier1_full": {
+      "auc_mean": 0.7652284097004849,
+      "auc_std": 0.03286434329131256,
+      "prauc_mean": 0.5046830698404075,
+      "prauc_std": 0.047435139458306935,
+      "brier": 0.1697444875482566,
+      "n": 1639,
+      "n_pos": 417,
+      "pos_ratio": 0.2544234289200732,
+      "fold_aucs": [
+        0.822380764293473,
+        0.7404110936270653,
+        0.728596016719941,
+        0.7582428479349497,
+        0.7765113259269947
+      ]
+    },
+    "tier2_remove_zero_positive": {
+      "auc_mean": 0.3675179338800645,
+      "auc_std": 0.04582411571785173,
+      "prauc_mean": 0.325132335846651,
+      "prauc_std": 0.02681902686570978,
+      "brier": 0.2467735837812275,
+      "n": 1036,
+      "n_pos": 417,
+      "pos_ratio": 0.4025096525096525,
+      "fold_aucs": [
+        0.386560409287682,
+        0.3284003831417625,
+        0.37264197530864196,
+        0.4400642843637739,
+        0.30992261729846216
+      ]
+    },
+    "tier3_high_confidence": {
+      "auc_mean": 0.3453960501553709,
+      "auc_std": 0.021073224439390196,
+      "prauc_mean": 0.3079793414723008,
+      "prauc_std": 0.01066052201550327,
+      "brier": 0.24308429592094855,
+      "n": 1055,
+      "n_pos": 417,
+      "pos_ratio": 0.395260663507109,
+      "fold_aucs": [
+        0.3253620426829268,
+        0.3736721217341372,
+        0.34151992585727525,
+        0.3209089191232048,
+        0.36551724137931035
+      ]
+    }
+  },
+  "per_family_breakdown": {
+    "Gq": {
+      "total": 448,
+      "positive": 152,
+      "by_evidence": {
+        "direct_assay": {
+          "pos": 152,
+          "neg": 0
+        },
+        "curated_negative": {
+          "pos": 0,
+          "neg": 150
+        },
+        "inferred_negative": {
+          "pos": 0,
+          "neg": 146
+        }
+      }
+    },
+    "Gi": {
+      "total": 397,
+      "positive": 159,
+      "by_evidence": {
+        "inferred_negative": {
+          "pos": 0,
+          "neg": 146
+        },
+        "direct_assay": {
+          "pos": 159,
+          "neg": 0
+        },
+        "curated_negative": {
+          "pos": 0,
+          "neg": 92
+        }
+      }
+    },
+    "Gs": {
+      "total": 397,
+      "positive": 80,
+      "by_evidence": {
+        "inferred_negative": {
+          "pos": 0,
+          "neg": 146
+        },
+        "curated_negative": {
+          "pos": 0,
+          "neg": 171
+        },
+        "direct_assay": {
+          "pos": 80,
+          "neg": 0
+        }
+      }
+    },
+    "G12_13": {
+      "total": 397,
+      "positive": 26,
+      "by_evidence": {
+        "inferred_negative": {
+          "pos": 0,
+          "neg": 146
+        },
+        "curated_negative": {
+          "pos": 0,
+          "neg": 225
+        },
+        "direct_assay": {
+          "pos": 26,
+          "neg": 0
+        }
+      }
+    }
+  },
+  "reference_svm_650m_icl_auc": 0.832
+}

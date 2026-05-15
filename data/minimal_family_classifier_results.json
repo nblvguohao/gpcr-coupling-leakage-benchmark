@@ -1,0 +1,49 @@
+{
+  "description": "Minimal family-conditioned classifiers: GPCR ESM-2 650M (1280-d) + ICL full (2576-d) + 4-d family onehot. These are the simplest models that use explicit family identity as the sole G-protein-side signal.",
+  "feature_dim": 3860,
+  "n_samples": 1639,
+  "positive_ratio": 0.2544234289200732,
+  "evaluation": "5x repeated cluster-aware 5-fold CV",
+  "reference_ca_650m_icl_full_gprot": 0.862,
+  "reference_mlp_650m_icl_full_gprot": 0.861,
+  "reference_svm_650m_icl_full_gprot": 0.832,
+  "reference_ca_650m_icl_onehot_gprot": 0.855,
+  "results": {
+    "logistic_regression": {
+      "auc_mean": 0.7805722747724424,
+      "auc_std": 0.015407143749320378,
+      "auc_95ci_low": 0.7583674863387977,
+      "auc_95ci_high": 0.8038400722837137,
+      "prauc_mean": 0.5264281600266362,
+      "prauc_std": 0.04188296819783746,
+      "brier_mean": 0.18102597684653984,
+      "brier_std": 0.0,
+      "n_repeats": 5,
+      "n_total_folds": 25
+    },
+    "svm_rbf": {
+      "auc_mean": 0.7724528916347445,
+      "auc_std": 0.025270646934079186,
+      "auc_95ci_low": 0.7296879827000309,
+      "auc_95ci_high": 0.8004517732098486,
+      "prauc_mean": 0.5068252761237937,
+      "prauc_std": 0.05863148378636582,
+      "brier_mean": 0.1691843378839552,
+      "brier_std": 0.0,
+      "n_repeats": 5,
+      "n_total_folds": 25
+    },
+    "mlp": {
+      "auc_mean": 0.8432206938855065,
+      "auc_std": 0.023411133577938403,
+      "auc_95ci_low": 0.8042891707344602,
+      "auc_95ci_high": 0.882547913171674,
+      "prauc_mean": 0.6441722239928244,
+      "prauc_std": 0.061904588888423595,
+      "brier_mean": 0.16757268226759758,
+      "brier_std": 0.007479069684775193,
+      "n_repeats": 5,
+      "n_total_folds": 25
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "evaluation": "Cluster-aware 5-fold CV",
+  "n_folds": 5,
+  "results": {
+    "AAC + RBF SVM": {
+      "auc_mean": 0.6561,
+      "auc_std": 0.0373
+    },
+    "AAC + k-NN (k=5)": {
+      "auc_mean": 0.6437,
+      "auc_std": 0.0237
+    },
+    "ESM-2 + k-NN (k=5, cosine)": {
+      "auc_mean": 0.7123,
+      "auc_std": 0.0152
+    },
+    "ESM-2 + k-NN (k=1, cosine)": {
+      "auc_mean": 0.6885,
+      "auc_std": 0.0124
+    },
+    "AAC + k-NN (k=3)": {
+      "auc_mean": 0.6452,
+      "auc_std": 0.0254
+    },
+    "AAC + k-NN (k=7)": {
+      "auc_mean": 0.6439,
+      "auc_std": 0.022
+    },
+    "AAC + k-NN (k=10)": {
+      "auc_mean": 0.6417,
+      "auc_std": 0.0205
+    }
+  },
+  "reference_svm_8m_baseline": 0.8188,
+  "reference_ca_650m_icl": 0.8619
+}

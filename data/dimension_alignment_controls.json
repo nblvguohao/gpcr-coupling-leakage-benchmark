@@ -1,0 +1,68 @@
+{
+  "reference": {
+    "1280_matched": {
+      "auc": 0.8306761421660488,
+      "std": 0.021419894959442395
+    },
+    "mismatched_1280_320": {
+      "auc": 0.8294225206330637,
+      "std": 0.019373467837055174
+    },
+    "320_matched_paper": 0.8301
+  },
+  "controls": {
+    "C1_PCA_all_to_320": {
+      "description": "GPCR 1280->320 PCA + ICL 1280->320 PCA + Gprot 1280 (all projected to 320-d except Gprot)",
+      "auc": 0.7903511907727356,
+      "std": 0.025167359408168947,
+      "fold_aucs": [
+        0.7501728053717784,
+        0.8007228560188827,
+        0.7923776739611508,
+        0.8272100748673706,
+        0.7812725436444957
+      ],
+      "gpcr_explained_var": 0.9994174313225767,
+      "icl2_explained_var": 0.9983842170751344,
+      "icl3_explained_var": 0.9987848207398975
+    },
+    "C2_learned_proj_320icl_to_1280": {
+      "description": "320-d ICL projected to 1280-d via linear regression, combined with 1280-d global",
+      "auc": 0.8245410105256574,
+      "std": 0.022807366110528374,
+      "fold_aucs": [
+        0.8667670583588427,
+        0.8219905586152636,
+        0.8006884681583477,
+        0.8242847934949675,
+        0.8089741740008658
+      ],
+      "icl2_r2": 0.950991348826381,
+      "icl3_r2": 0.9508353892331554
+    },
+    "C3_block_zscore": {
+      "description": "GPCR global and ICL blocks z-score normalized separately before concat (mismatched dims)",
+      "auc": 0.8294225206330637,
+      "std": 0.019373467837055174,
+      "fold_aucs": [
+        0.8646440209341365,
+        0.8185238001573565,
+        0.829899188591099,
+        0.8272596559075809,
+        0.8067859375751455
+      ]
+    },
+    "C4_zero_pad_320icl_to_1280": {
+      "description": "320-d ICL zero-padded to 1280-d, combined with 1280-d global",
+      "auc": 0.8294225206330637,
+      "std": 0.019373467837055174,
+      "fold_aucs": [
+        0.8646440209341365,
+        0.8185238001573565,
+        0.829899188591099,
+        0.8272596559075809,
+        0.8067859375751455
+      ]
+    }
+  }
+}

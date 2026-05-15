@@ -1,0 +1,19 @@
+{
+  "description": "G protein one-hot vs embedding ablation",
+  "multi_task_reference_auc": 0.802,
+  "paired_embedding_reference_auc": 0.862,
+  "results": {
+    "embedding (1280-d)": {
+      "svm_auc": 0.8307,
+      "svm_std": 0.0214,
+      "ca_auc": 0.8518,
+      "ca_std": 0.0228
+    },
+    "onehot (4-d)": {
+      "svm_auc": 0.7652,
+      "svm_std": 0.0329,
+      "ca_auc": 0.8545,
+      "ca_std": 0.0178
+    }
+  }
+}

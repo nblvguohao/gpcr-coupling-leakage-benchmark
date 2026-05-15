@@ -1,0 +1,81 @@
+{
+  "method": "ESM-2 650M embedding cosine similarity single-linkage clustering",
+  "original_method": "3-mer Jaccard (threshold 0.30, 387 clusters)",
+  "note": "Cosine similarity on ESM-2 embeddings used as sequence similarity proxy for sensitivity analysis",
+  "random_cv_auc": 0.8415,
+  "random_cv_std": 0.0248,
+  "thresholds": [
+    {
+      "cosine_threshold": 0.99,
+      "n_clusters": 307,
+      "n_singletons": 262,
+      "auc": 0.7895,
+      "auc_std": 0.0674,
+      "gap": 0.0519
+    },
+    {
+      "cosine_threshold": 0.98,
+      "n_clusters": 180,
+      "n_singletons": 139,
+      "auc": 0.7866,
+      "auc_std": 0.0425,
+      "gap": 0.0548
+    },
+    {
+      "cosine_threshold": 0.97,
+      "n_clusters": 79,
+      "n_singletons": 58,
+      "auc": 0.7651,
+      "auc_std": 0.064,
+      "gap": 0.0763
+    },
+    {
+      "cosine_threshold": 0.96,
+      "n_clusters": 38,
+      "n_singletons": 30,
+      "auc": 0.7828,
+      "auc_std": 0.1011,
+      "gap": 0.0586
+    },
+    {
+      "cosine_threshold": 0.95,
+      "n_clusters": 28,
+      "n_singletons": 23,
+      "auc": 0.8259,
+      "auc_std": 0.1325,
+      "gap": 0.0156
+    },
+    {
+      "cosine_threshold": 0.93,
+      "n_clusters": 8,
+      "n_singletons": 5,
+      "auc": 0.7702,
+      "auc_std": 0.1631,
+      "gap": 0.0712
+    },
+    {
+      "cosine_threshold": 0.9,
+      "n_clusters": 2,
+      "n_singletons": 0,
+      "auc": 0.6481,
+      "auc_std": 0.0099,
+      "gap": 0.1934
+    },
+    {
+      "cosine_threshold": 0.85,
+      "n_clusters": 1,
+      "n_singletons": 0,
+      "auc": 0.6418,
+      "auc_std": 0.0036,
+      "gap": 0.1997
+    },
+    {
+      "cosine_threshold": 0.8,
+      "n_clusters": 1,
+      "n_singletons": 0,
+      "auc": 0.6418,
+      "auc_std": 0.0036,
+      "gap": 0.1997
+    }
+  ]
+}

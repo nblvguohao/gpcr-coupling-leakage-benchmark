@@ -1,0 +1,34 @@
+{
+  "permissions": {
+    "allow": [
+      "Read",
+      "Write",
+      "Edit",
+      "Glob",
+      "Grep",
+      "Bash(git:*)",
+      "Bash(python:*)",
+      "Bash(pdflatex:*)",
+      "Bash(bibtex:*)",
+      "Bash(pip:*)",
+      "Bash(mkdir:*)",
+      "Bash(cp:*)",
+      "Bash(mv:*)",
+      "Bash(ls:*)",
+      "Bash(echo:*)",
+      "Bash(cat:*)",
+      "Bash(find:*)",
+      "Bash(which:*)",
+      "Bash(wc:*)",
+      "Bash(head:*)",
+      "Bash(tail:*)",
+      "Bash(sort:*)"
+    ],
+    "deny": [
+      "Bash(rm -rf:*)",
+      "WebFetch",
+      "WebSearch"
+    ]
+  },
+  "model": "claude-opus-4-7"
+}

@@ -1,0 +1,298 @@
+{
+  "description": "Extended bootstrap: 2000 cluster-level samples, 3 pairwise comparisons",
+  "cluster_bootstrap_auc": {
+    "CA": {
+      "mean": 0.8470398107467327,
+      "std": 0.012336816508776853,
+      "ci_95_low": 0.8226817352966963,
+      "ci_95_high": 0.8704125979613261,
+      "n_bootstrap": 2000,
+      "n_clusters": 387
+    },
+    "SVM": {
+      "mean": 0.831438501234758,
+      "std": 0.012810659757622992,
+      "ci_95_low": 0.8067482175707597,
+      "ci_95_high": 0.856285379816234,
+      "n_bootstrap": 2000,
+      "n_clusters": 387
+    },
+    "MLP": {
+      "mean": 0.8383737056466146,
+      "std": 0.011964261964396513,
+      "ci_95_low": 0.8149980926407688,
+      "ci_95_high": 0.8616925142463421,
+      "n_bootstrap": 2000,
+      "n_clusters": 387
+    }
+  },
+  "pairwise_comparisons": {
+    "CA_vs_SVM": {
+      "mean_diff": 0.015601309511974677,
+      "std_diff": 0.006264306783561198,
+      "ci_95_low": 0.0034795244163042085,
+      "ci_95_high": 0.02788816135803931,
+      "p_value_bootstrap": 0.0055,
+      "n_bootstrap": 2000,
+      "n_clusters": 387
+    },
+    "CA_vs_MLP": {
+      "mean_diff": 0.00866610510011816,
+      "std_diff": 0.007661865900002777,
+      "ci_95_low": -0.0051345190934885595,
+      "ci_95_high": 0.02361477302131304,
+      "p_value_bootstrap": 0.133,
+      "n_bootstrap": 2000,
+      "n_clusters": 387
+    }
+  },
+  "per_family_metrics": {
+    "CA": {
+      "Gq": {
+        "n": 448,
+        "n_pos": 152,
+        "pos_ratio": 0.3392857142857143,
+        "auc": 0.7926964793741109,
+        "prauc": 0.6547899755357031,
+        "brier": 0.21792164163095679,
+        "recall_at_precision": {
+          "recall@prec=0.5": 0.8421052631578947,
+          "recall@prec=0.7": 0.3092105263157895,
+          "recall@prec=0.8": 0.24342105263157895,
+          "recall@prec=0.9": 0.05921052631578947
+        },
+        "precision_at_k": {
+          "precision@10": 0.9
+        },
+        "mean_prob_positive": 0.6755145182896022,
+        "mean_prob_negative": 0.24093376278613576
+      },
+      "Gi": {
+        "n": 397,
+        "n_pos": 159,
+        "pos_ratio": 0.4005037783375315,
+        "auc": 0.84593837535014,
+        "prauc": 0.7758775214529716,
+        "brier": 0.2116356642088447,
+        "recall_at_precision": {
+          "recall@prec=0.5": 0.9748427672955975,
+          "recall@prec=0.7": 0.7484276729559748,
+          "recall@prec=0.8": 0.5786163522012578,
+          "recall@prec=0.9": 0.11320754716981132
+        },
+        "precision_at_k": {
+          "precision@10": 1.0
+        },
+        "mean_prob_positive": 0.78685727974045,
+        "mean_prob_negative": 0.2789430979988007
+      },
+      "Gs": {
+        "n": 397,
+        "n_pos": 80,
+        "pos_ratio": 0.20151133501259447,
+        "auc": 0.8114747634069401,
+        "prauc": 0.6289064834627117,
+        "brier": 0.14485004659276918,
+        "recall_at_precision": {
+          "recall@prec=0.5": 0.65,
+          "recall@prec=0.7": 0.4375,
+          "recall@prec=0.8": 0.3125,
+          "recall@prec=0.9": 0.225
+        },
+        "precision_at_k": {
+          "precision@10": 0.9
+        },
+        "mean_prob_positive": 0.5792883726838909,
+        "mean_prob_negative": 0.11543395747433664
+      },
+      "G12_13": {
+        "n": 397,
+        "n_pos": 26,
+        "pos_ratio": 0.0654911838790932,
+        "auc": 0.7053701015965167,
+        "prauc": 0.22977699063094278,
+        "brier": 0.06950818371543012,
+        "recall_at_precision": {
+          "recall@prec=0.5": 0.038461538461538464,
+          "recall@prec=0.7": 0.038461538461538464,
+          "recall@prec=0.8": 0.038461538461538464,
+          "recall@prec=0.9": 0.038461538461538464
+        },
+        "precision_at_k": {
+          "precision@10": 0.4
+        },
+        "mean_prob_positive": 0.2136066057422655,
+        "mean_prob_negative": 0.03477017585951954
+      }
+    },
+    "SVM": {
+      "Gq": {
+        "n": 448,
+        "n_pos": 152,
+        "pos_ratio": 0.3392857142857143,
+        "auc": 0.7705703236130867,
+        "prauc": 0.6223625419848292,
+        "brier": 0.17998738391585614,
+        "recall_at_precision": {
+          "recall@prec=0.5": 0.8289473684210527,
+          "recall@prec=0.7": 0.23026315789473684,
+          "recall@prec=0.8": 0.13815789473684212,
+          "recall@prec=0.9": 0.05921052631578947
+        },
+        "precision_at_k": {
+          "precision@10": 0.9
+        },
+        "mean_prob_positive": 0.445736286178043,
+        "mean_prob_negative": 0.2496035506503221
+      },
+      "Gi": {
+        "n": 397,
+        "n_pos": 159,
+        "pos_ratio": 0.4005037783375315,
+        "auc": 0.8070001585539877,
+        "prauc": 0.7225058423467924,
+        "brier": 0.17677600886447167,
+        "recall_at_precision": {
+          "recall@prec=0.5": 0.9622641509433962,
+          "recall@prec=0.7": 0.5911949685534591,
+          "recall@prec=0.8": 0.3270440251572327,
+          "recall@prec=0.9": 0.11949685534591195
+        },
+        "precision_at_k": {
+          "precision@10": 0.9
+        },
+        "mean_prob_positive": 0.5096987154011792,
+        "mean_prob_negative": 0.2659438109200659
+      },
+      "Gs": {
+        "n": 397,
+        "n_pos": 80,
+        "pos_ratio": 0.20151133501259447,
+        "auc": 0.8172318611987381,
+        "prauc": 0.615847909398687,
+        "brier": 0.11723482679514478,
+        "recall_at_precision": {
+          "recall@prec=0.5": 0.675,
+          "recall@prec=0.7": 0.4375,
+          "recall@prec=0.8": 0.325,
+          "recall@prec=0.9": 0.1375
+        },
+        "precision_at_k": {
+          "precision@10": 0.9
+        },
+        "mean_prob_positive": 0.3914215047059837,
+        "mean_prob_negative": 0.15037608483717405
+      },
+      "G12_13": {
+        "n": 397,
+        "n_pos": 26,
+        "pos_ratio": 0.0654911838790932,
+        "auc": 0.6844287787684014,
+        "prauc": 0.23202688866007998,
+        "brier": 0.05999679592814679,
+        "recall_at_precision": {
+          "recall@prec=0.5": 0.07692307692307693,
+          "recall@prec=0.7": 0.038461538461538464,
+          "recall@prec=0.8": 0.038461538461538464,
+          "recall@prec=0.9": 0.038461538461538464
+        },
+        "precision_at_k": {
+          "precision@10": 0.2
+        },
+        "mean_prob_positive": 0.1921060661812804,
+        "mean_prob_negative": 0.10598346101114099
+      }
+    },
+    "MLP": {
+      "Gq": {
+        "n": 448,
+        "n_pos": 152,
+        "pos_ratio": 0.3392857142857143,
+        "auc": 0.7593905583214794,
+        "prauc": 0.5895382659174602,
+        "brier": 0.24315137214678822,
+        "recall_at_precision": {
+          "recall@prec=0.5": 0.7894736842105263,
+          "recall@prec=0.7": 0.08552631578947369,
+          "recall@prec=0.8": 0.0,
+          "recall@prec=0.9": 0.0
+        },
+        "precision_at_k": {
+          "precision@10": 0.7
+        },
+        "mean_prob_positive": 0.7299209401562142,
+        "mean_prob_negative": 0.43268653200789847
+      },
+      "Gi": {
+        "n": 397,
+        "n_pos": 159,
+        "pos_ratio": 0.4005037783375315,
+        "auc": 0.8292902066486971,
+        "prauc": 0.7350608574352093,
+        "brier": 0.2077416761764053,
+        "recall_at_precision": {
+          "recall@prec=0.5": 0.9685534591194969,
+          "recall@prec=0.7": 0.7169811320754716,
+          "recall@prec=0.8": 0.23270440251572327,
+          "recall@prec=0.9": 0.11320754716981132
+        },
+        "precision_at_k": {
+          "precision@10": 0.9
+        },
+        "mean_prob_positive": 0.8296050121308504,
+        "mean_prob_negative": 0.4231235277477653
+      },
+      "Gs": {
+        "n": 397,
+        "n_pos": 80,
+        "pos_ratio": 0.20151133501259447,
+        "auc": 0.8373817034700315,
+        "prauc": 0.5614868995615889,
+        "brier": 0.1491736145658293,
+        "recall_at_precision": {
+          "recall@prec=0.5": 0.6875,
+          "recall@prec=0.7": 0.175,
+          "recall@prec=0.8": 0.15,
+          "recall@prec=0.9": 0.0
+        },
+        "precision_at_k": {
+          "precision@10": 0.7
+        },
+        "mean_prob_positive": 0.6576118351425976,
+        "mean_prob_negative": 0.2523782274121902
+      },
+      "G12_13": {
+        "n": 397,
+        "n_pos": 26,
+        "pos_ratio": 0.0654911838790932,
+        "auc": 0.6959361393323658,
+        "prauc": 0.22227743438032266,
+        "brier": 0.07363885436601685,
+        "recall_at_precision": {
+          "recall@prec=0.5": 0.23076923076923078,
+          "recall@prec=0.7": 0.0,
+          "recall@prec=0.8": 0.0,
+          "recall@prec=0.9": 0.0
+        },
+        "precision_at_k": {
+          "precision@10": 0.4
+        },
+        "mean_prob_positive": 0.3088631739553351,
+        "mean_prob_negative": 0.1295093502990545
+      }
+    }
+  },
+  "minimal_family_conditioned_mlp_reference": {
+    "auc_mean": 0.8432206938855065,
+    "auc_std": 0.023411133577938403,
+    "auc_95ci_low": 0.8042891707344602,
+    "auc_95ci_high": 0.882547913171674,
+    "prauc_mean": 0.6441722239928244,
+    "prauc_std": 0.061904588888423595,
+    "brier_mean": 0.16757268226759758,
+    "brier_std": 0.007479069684775193,
+    "n_repeats": 5,
+    "n_total_folds": 25
+  },
+  "note": "CA vs MLP and minimal MLP vs CA comparisons use cluster-level bootstrap. Fold-level t-test results are in supplementary. If CA vs MLP bootstrap p > 0.05, write 'CA and MLP are statistically comparable'. Report real \u0394AUC, CI, and p for each comparison \u2014 do NOT reuse CA-SVM p=0.006 for other pairs."
+}
