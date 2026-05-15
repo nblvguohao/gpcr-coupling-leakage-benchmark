@@ -47,3 +47,11 @@ bin/
 server_sync/
 merged_dataset/
 __pycache__/
+
+# Local only (not in public repo)
+manuscript/
+submission/
+figures/
+CLAUDE.md
+src/
+.claude/scheduled_tasks.lock

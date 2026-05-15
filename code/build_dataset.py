@@ -48,7 +48,7 @@ Usage examples:
   python build_dataset.py --step build --gpcrdb data/some_couplings.xlsx
   python build_dataset.py --step all
 
-Author: Claude Code (Strategy C Phase 1 Week 1)
+Author: Guohao Lü
 """
 
 import json

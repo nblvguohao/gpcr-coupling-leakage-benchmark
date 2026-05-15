@@ -1,7 +1,0 @@
-Highlights
-
-• Leakage-controlled benchmark established for GPCR–G protein coupling prediction: 1,647 experimentally annotated pairs, 431 GPCRs, 387 sequence-homology clusters, cluster-aware 5-fold CV
-• Explicit G protein family identity is the dominant G-protein-side signal: replacing 1280-d sequence embedding with 4-d one-hot vector leaves cross-attention AUC unchanged (0.855 vs. 0.852); minimal family-conditioned MLP achieves AUC 0.843 within 0.02 of best model
-• Dimension alignment requirement identified: ICL local features must match global PLM embedding dimension; mismatched dimensions degrade performance across architectures
-• Thirty-eight AlphaFold2 structural descriptors provide no incremental benefit beyond ESM-2 650M embeddings (ΔAUC ≤ 0.002) under this protocol, a finding specific to the examined descriptors and the binary family-level task
-• G12/13 family PRAUC = 0.23 (vs. AUC 0.705), revealing practical limitations obscured by AUC alone; leave-one-G-protein-family-out generalization capped at ~0.60 AUC, proposed as community benchmark

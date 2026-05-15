@@ -8,45 +8,23 @@ Leakage-controlled benchmark and software toolkit for predicting GPCR–G protei
 ## Repository Structure
 
 ```
-├── code/                  # Core scripts (31 files)
-│   ├── cross_validation.py         # Main CV: cluster-aware + LOGPSO
-│   ├── train_cross_attention.py    # Cross-attention model training
-│   ├── train_baselines.py          # SVM/MLP/RF/XGBoost baselines
-│   ├── extract_esm.py              # ESM-2 650M feature extraction
-│   ├── extract_icl.py              # ICL2/3 feature extraction
-│   ├── extract_gprotein.py         # G protein ESM extraction
-│   ├── run_ablation.py             # Ablation experiments
-│   ├── run_gprotein.py             # G protein experiment
-│   ├── run_analysis.py             # Calibration + promiscuity analysis
-│   ├── gradient_attribution.py     # Feature importance
-│   ├── statistical_tests.py        # Significance tests
-│   ├── build_dataset.py            # Dataset construction
-│   ├── fetch_data.py               # GPCRdb data acquisition
-│   ├── bootstrap_statistics.py     # Bootstrap confidence intervals
-│   ├── classical_baselines.py      # Classical ML baselines
-│   ├── cluster_sensitivity.py      # Cluster threshold sensitivity
-│   ├── compute_prauc.py            # Precision-Recall AUC
-│   ├── compute_tiered_metrics.py   # Tiered evaluation metrics
-│   ├── dimension_alignment_controls.py  # ICL dimension controls
-│   ├── extended_bootstrap.py       # Extended bootstrap analysis
-│   ├── generate_cv_predictions.py  # CV prediction generation
-│   ├── generate_mlp_predictions.py # MLP prediction generation
-│   ├── gprot_onehot_ablation.py    # G protein one-hot ablation
-│   ├── label_audit.py              # Data label audit
-│   ├── minimal_family_classifier.py # Minimal family classifier
-│   ├── fig_*.py                    # Figure generation (5 scripts)
-│   └── style_config.py            # Plotting style config
-├── src/gpcr_coupling/     # Python package (CLI tool)
-│   ├── __init__.py
-│   ├── cli.py                     # Command-line interface
-│   ├── features.py                # Feature extraction module
-│   └── predict.py                 # Model architecture + predictor
-├── sample_data/           # Example dataset (for format reference)
-│   ├── pairing_matrix_sample.csv         # Sample pairs (50 rows)
-│   ├── sequence_clusters_sample.json     # Sample clusters
-│   ├── ablation_results_sample.json      # Sample ablation results
-│   ├── cv_results_sample.json            # Sample CV results
-│   └── prauc_results_sample.json         # Sample PRAUC results
+├── code/                       # Research pipeline + CLI tool
+│   ├── gpcr_coupling/          # Installable Python package
+│   │   ├── __init__.py
+│   │   ├── cli.py              # Command-line interface
+│   │   ├── predict.py          # Cross-attention model + predictor
+│   │   └── features.py         # ESM-2 + ICL feature extraction
+│   ├── build_dataset.py        # GPCRdb data acquisition + pairing matrix
+│   ├── extract_features.py     # ESM-2 / G protein / ICL feature extraction
+│   ├── train_models.py         # Train CA, MLP, RF, XGBoost (cluster-aware CV)
+│   ├── generate_predictions.py # Generate held-out CV predictions
+│   ├── bootstrap.py            # Cluster-level bootstrap statistics
+│   ├── ablation.py             # Control experiments + label quality audit
+│   ├── make_figures.py         # All manuscript figures
+│   ├── statistical_tests.py    # Paired t-test + Wilcoxon
+│   └── style_config.py         # Shared matplotlib style
+├── data/                       # Datasets, features, and results
+├── sample_data/                # Example dataset (for format reference)
 ├── .gitignore
 └── README.md
 ```
@@ -54,32 +32,65 @@ Leakage-controlled benchmark and software toolkit for predicting GPCR–G protei
 ## Installation
 
 ```bash
-# Clone repo
 git clone https://github.com/nblvguohao/gpcr-coupling-leakage-benchmark.git
 cd gpcr-coupling-leakage-benchmark
 
-# Install package
+# Install the CLI tool
 pip install -e .
 ```
 
-## Usage
+## Quick Start
 
 ```bash
-# Predict coupling
+# Predict coupling for a GPCR
 gpcr-coupling predict --gpcr example.fasta --gprotein Gq
 
-# Extract features
+# Extract features from sequences
 gpcr-coupling extract-features --input sequences.fasta --output-dir features/
+
+# Evaluate predictions
+gpcr-coupling evaluate --predictions output.json --labels test.csv
 ```
 
-## Software Tool Commands
+## CLI Commands
 
 ```
-predict         Predict GPCR-G protein coupling from FASTA sequences
+predict           Predict GPCR-G protein coupling from FASTA sequences
 extract-features  Extract ESM-2 and ICL features from sequences
-evaluate        Evaluate model performance on labeled data
-train           Train cross-attention model on custom data
+evaluate          Evaluate model performance on labeled data
+train             Train cross-attention model on custom data
 ```
+
+## Reproducing the Benchmark
+
+Run the pipeline scripts in order:
+
+```bash
+cd code/
+
+# 1. Build dataset
+python build_dataset.py
+
+# 2. Extract features (requires GPU for ESM-2 650M)
+python extract_features.py --step all
+
+# 3. Train models
+python train_models.py --model all
+
+# 4. Generate CV predictions
+python generate_predictions.py --model all
+
+# 5. Compute bootstrap statistics
+python bootstrap.py --mode all
+
+# 6. Run ablation experiments
+python ablation.py --step all
+
+# 7. Make figures
+python make_figures.py all
+```
+
+Pre-computed features and model weights are included in `data/` to skip steps 2–3.
 
 ## Data Format
 
@@ -87,14 +98,14 @@ The benchmark uses paired GPCR–G protein data with the following schema:
 
 | Column | Description |
 |--------|-------------|
-| `gpcr_id` | UniProt accession (optionally prefixed for isoform/allele) |
+| `gpcr_id` | UniProt accession |
 | `gpcr_sequence` | Amino acid sequence |
 | `g_protein_family` | Gi, Gs, Gq, G12/13 |
 | `coupling` | Binary label (0 or 1) |
 | `source` | Data source (gpcrdb_iuphar, local_seed) |
 | `cluster_id` | 3-mer Jaccard single-linkage cluster assignment |
 
-Sample data is provided in `sample_data/` for format reference. The full benchmark dataset is available upon request.
+Sample data is provided in `sample_data/` for format reference.
 
 ## Key Dependencies
 
